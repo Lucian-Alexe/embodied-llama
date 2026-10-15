@@ -6,7 +6,7 @@ import { getD1, getAllArticles } from '../lib/db';
 
 const d1 = getD1(Astro.locals);
 const allArticles = await getAllArticles(d1);
-const latestArticles = allArticles.filter((a) => a.status === 'published').slice(0, 4);
+const publishedArticles = allArticles.filter((a) => a.status === 'published');
 
 const seoSchema = {
   '@context': 'https://schema.org',
@@ -46,15 +46,15 @@ const seoSchema = {
   description="Embodied Llama — Somatic Coaching to step out of survival mode, regulate your nervous system, and reconnect with the wisdom of your body."
   schema={seoSchema}
 >
-  <!-- ==================== TOP BRAND HEADER (Centered directly above Hero as in PDF) ==================== -->
+  <!-- ==================== TOP BRAND HEADER (Bigger logo, smaller font as requested) ==================== -->
   <header class="page-top-brand">
     <div class="container text-center">
       <img
         src="/assets/logo.svg"
         alt="Embodied Llama Logo"
         class="brand-top-logo"
-        width="110"
-        height="124"
+        width="145"
+        height="164"
         loading="eager"
       />
       <h1 class="brand-top-title">Embodied LLama</h1>
@@ -65,21 +65,26 @@ const seoSchema = {
   <!-- ==================== HERO SECTION ==================== -->
   <section class="hero-section">
     <div class="container hero-container">
-      <!-- Left: Portrait Photo with Arched Frame -->
+      <!-- Background Flower SVG positioned subtly between photo and text as in PDF -->
+      <div class="hero-flower-wrap" aria-hidden="true">
+        <img src="/assets/flower.svg" alt="" class="hero-flower-bg" width="460" height="460" />
+      </div>
+
+      <!-- Left: Portrait Photo with rounded corners all around, not circular top -->
       <div class="hero-media">
-        <div class="arch-frame">
+        <div class="hero-photo-frame">
           <img
             src="/assets/photos/hero-portrait.jpeg"
             alt="Somatic coach smiling in nature — Embodied Llama somatic coaching"
             class="hero-img"
-            width="480"
-            height="640"
+            width="420"
+            height="560"
             loading="eager"
           />
         </div>
       </div>
 
-      <!-- Right: Headline and 2-column narrative -->
+      <!-- Right: Headline and 2-column narrative starting lower down (misaligned) -->
       <div class="hero-content">
         <h2 class="hero-title">Returning to the<br />wisdom of your body</h2>
 
@@ -91,9 +96,6 @@ const seoSchema = {
             <p>
               Whether you are moving through a major transition, finding your way through stress, wanting to foster self-attunement and reconnecting with your true self, <em>somatic coaching meets you right where you are</em>. It offers a path to feel at home in your body and make choices that are aligned with your deepest truth, as you dive into the wisdom of your soma.
             </p>
-            <div class="hero-col-action">
-              <button type="button" class="btn-primary" data-open-modal>Let's meet</button>
-            </div>
           </div>
 
           <div class="hero-col">
@@ -105,10 +107,15 @@ const seoSchema = {
             </p>
           </div>
         </div>
+
+        <!-- Button under the two columns so when stacked it comes after them -->
+        <div class="hero-actions">
+          <button type="button" class="btn-primary" data-open-modal>Let's meet</button>
+        </div>
       </div>
     </div>
 
-    <!-- Llama Wisdom Callout Card with Logo on Left as in PDF -->
+    <!-- Llama Wisdom Callout Card: White, no border, bigger levitating llama -->
     <div class="container">
       <div class="callout-card">
         <div class="callout-icon-wrap">
@@ -116,8 +123,8 @@ const seoSchema = {
             src="/assets/logo.svg"
             alt="Embodied Llama Emblem"
             class="callout-llama-icon"
-            width="68"
-            height="76"
+            width="95"
+            height="107"
             loading="lazy"
           />
         </div>
@@ -143,7 +150,7 @@ const seoSchema = {
         </p>
       </div>
 
-      <!-- Golden Highlight Banner with 4 White Pillar Cards nested inside as in PDF -->
+      <!-- Golden Highlight Banner with 4 White Cards -->
       <div class="golden-banner">
         <div class="banner-stars" aria-hidden="true">✦ &nbsp; ✦ &nbsp; ✦</div>
         <h3 class="banner-heading">
@@ -151,12 +158,12 @@ const seoSchema = {
         </h3>
         <p class="banner-sub">Here is what we weave in our sessions:</p>
 
-        <!-- 4 Method Pillar Cards -->
+        <!-- 4 Method Pillar Cards: Bigger icon, smaller text under as requested -->
         <div class="pillars-grid">
           <!-- Pillar 1 -->
           <div class="pillar-card">
             <div class="pillar-icon-box">
-              <img src="/assets/icon-1.svg" alt="Nervous System Regulation - Somatic Coaching" class="pillar-icon" width="60" height="60" />
+              <img src="/assets/icon-1.svg" alt="Nervous System Regulation - Somatic Coaching" class="pillar-icon" width="72" height="72" />
             </div>
             <h4 class="pillar-title">Nervous System<br />Regulation</h4>
             <p class="pillar-desc">
@@ -167,7 +174,7 @@ const seoSchema = {
           <!-- Pillar 2 -->
           <div class="pillar-card">
             <div class="pillar-icon-box">
-              <img src="/assets/icon-2.svg" alt="Befriending Your Body - Somatic Healing" class="pillar-icon" width="60" height="60" />
+              <img src="/assets/icon-2.svg" alt="Befriending Your Body - Somatic Healing" class="pillar-icon" width="72" height="72" />
             </div>
             <h4 class="pillar-title">Befriending Your<br />Body</h4>
             <p class="pillar-desc">
@@ -178,7 +185,7 @@ const seoSchema = {
           <!-- Pillar 3 -->
           <div class="pillar-card">
             <div class="pillar-icon-box">
-              <img src="/assets/icon-3.svg" alt="Creating Space for Emotion - Somatic Coaching" class="pillar-icon" width="60" height="60" />
+              <img src="/assets/icon-3.svg" alt="Creating Space for Emotion - Somatic Coaching" class="pillar-icon" width="72" height="72" />
             </div>
             <h4 class="pillar-title">Creating Space for<br />Emotion</h4>
             <p class="pillar-desc">
@@ -189,7 +196,7 @@ const seoSchema = {
           <!-- Pillar 4 -->
           <div class="pillar-card">
             <div class="pillar-icon-box">
-              <img src="/assets/icon-4.svg" alt="Reclaiming Your Voice - Somatic Coaching" class="pillar-icon" width="60" height="60" />
+              <img src="/assets/icon-4.svg" alt="Reclaiming Your Voice - Somatic Coaching" class="pillar-icon" width="72" height="72" />
             </div>
             <h4 class="pillar-title">Reclaiming Your Voice &<br />Reconnecting with Creation</h4>
             <p class="pillar-desc">
@@ -254,52 +261,56 @@ const seoSchema = {
         </div>
       </div>
 
-      <!-- Passion Statement Callout -->
+      <!-- Passion Statement Callout: Same font as copy, bold and slightly larger -->
       <div class="passion-box">
-        <p>My real passion is guiding people to step out of survival mode and reconnect with their true selves.</p>
+        <p class="passion-lead-text">
+          My real passion is guiding people to step out of survival mode and reconnect with their true selves.
+        </p>
       </div>
 
-      <!-- Artfully Staggered 5-Photo Row as in PDF -->
-      <div class="about-photos-grid">
-        <div class="about-photo-card photo-stagger-1">
-          <img
-            src="/assets/photos/about-1.jpeg"
-            alt="Beach sunset yoga pose — Somatic coaching practice"
-            class="about-photo-img"
-            loading="lazy"
-          />
-        </div>
-        <div class="about-photo-card photo-stagger-2">
-          <img
-            src="/assets/photos/about-2.jpeg"
-            alt="Warm vibrant connection in nature — Somatic coaching"
-            class="about-photo-img"
-            loading="lazy"
-          />
-        </div>
-        <div class="about-photo-card photo-stagger-3">
-          <img
-            src="/assets/photos/about-3.jpeg"
-            alt="Bridge in lush greenery — Grounded somatic journey"
-            class="about-photo-img"
-            loading="lazy"
-          />
-        </div>
-        <div class="about-photo-card photo-stagger-4">
-          <img
-            src="/assets/photos/about-4.jpeg"
-            alt="Authentic joy and companion connection — Somatic coach"
-            class="about-photo-img"
-            loading="lazy"
-          />
-        </div>
-        <div class="about-photo-card photo-stagger-5">
-          <img
-            src="/assets/photos/about-5.jpeg"
-            alt="Joyful connection at local market — Embodied living"
-            class="about-photo-img"
-            loading="lazy"
-          />
+      <!-- 5-Photo Row: Staggered and gently aligning on scroll -->
+      <div class="about-photos-container" id="photosScrollContainer">
+        <div class="about-photos-grid" id="photosGrid">
+          <div class="about-photo-card" style="--initial-offset: -20px;">
+            <img
+              src="/assets/photos/about-1.jpeg"
+              alt="Beach sunset yoga pose — Somatic coaching practice"
+              class="about-photo-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="about-photo-card" style="--initial-offset: 35px;">
+            <img
+              src="/assets/photos/about-2.jpeg"
+              alt="Warm vibrant connection in nature — Somatic coaching"
+              class="about-photo-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="about-photo-card photo-card-center" style="--initial-offset: 10px;">
+            <img
+              src="/assets/photos/about-3.jpeg"
+              alt="Bridge in lush greenery — Grounded somatic journey"
+              class="about-photo-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="about-photo-card" style="--initial-offset: 35px;">
+            <img
+              src="/assets/photos/about-4.jpeg"
+              alt="Authentic joy and companion connection — Somatic coach"
+              class="about-photo-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="about-photo-card" style="--initial-offset: -15px;">
+            <img
+              src="/assets/photos/about-5.jpeg"
+              alt="Joyful connection at local market — Embodied living"
+              class="about-photo-img"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -333,14 +344,18 @@ const seoSchema = {
     </div>
   </section>
 
-  <!-- ==================== LATEST ARTICLES ==================== -->
+  <!-- ==================== LATEST ARTICLES (In-place home page loading) ==================== -->
   <section class="articles-section" id="articles">
     <div class="container">
       <h2 class="section-title text-center">Latest Articles</h2>
 
-      <div class="articles-list">
-        {latestArticles.map((art) => (
-          <a href={`/articles/${art.slug}`} class="article-row">
+      <div class="articles-list" id="articlesList">
+        {publishedArticles.map((art, index) => (
+          <a
+            href={`/articles/${art.slug}`}
+            class={`article-row ${index >= 4 ? 'is-extra-hidden' : ''}`}
+            data-article-index={index}
+          >
             <span class="article-date">
               {new Date(art.created_at || Date.now()).toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -355,9 +370,11 @@ const seoSchema = {
         ))}
       </div>
 
-      <div class="text-center mt-3">
-        <a href="/articles" class="btn-primary">Load More</a>
-      </div>
+      {publishedArticles.length > 4 && (
+        <div class="text-center mt-3" id="loadMoreWrap">
+          <button type="button" class="btn-primary" id="loadMoreBtn">Load More</button>
+        </div>
+      )}
     </div>
   </section>
 </Layout>
@@ -367,25 +384,26 @@ const seoSchema = {
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.75rem;
+    position: relative;
   }
   .text-center { text-align: center; }
-  .mt-3 { margin-top: 3rem; }
+  .mt-3 { margin-top: 2.5rem; }
 
-  /* Reusable Flat Button (No Glow, Clean Authentic Warm Gold Pill) */
+  /* Reusable Flat Button (No Glow) */
   .btn-primary {
     display: inline-block;
-    padding: 0.95rem 2.85rem;
+    padding: 0.85rem 2.6rem;
     background: #b68e54;
     color: #ffffff;
     border: none;
     border-radius: 9999px;
     font-family: var(--font-body);
-    font-size: 1.05rem;
+    font-size: 0.98rem;
     font-weight: 600;
     letter-spacing: 0.02em;
     cursor: pointer;
-    box-shadow: none; /* No glow */
+    box-shadow: none;
     text-decoration: none;
     transition: background 0.2s ease, transform 0.15s ease;
   }
@@ -395,28 +413,29 @@ const seoSchema = {
     box-shadow: none;
   }
 
+  /* Section Title with Balanced Typography Ratio */
   .section-title {
     font-family: var(--font-heading);
-    font-size: 3rem;
+    font-size: 2.15rem;
     font-weight: 600;
     color: #b68e54;
     letter-spacing: -0.01em;
-    margin-bottom: 2.25rem;
+    margin-bottom: 2rem;
   }
 
   /* ==================== TOP BRAND HEADER ==================== */
   .page-top-brand {
-    padding: 2.5rem 0 2rem 0;
+    padding: 2.25rem 0 1.5rem 0;
   }
   .brand-top-logo {
     display: block;
-    margin: 0 auto 0.85rem auto;
-    width: 115px;
+    margin: 0 auto 0.75rem auto;
+    width: 145px;
     height: auto;
   }
   .brand-top-title {
     font-family: var(--font-heading);
-    font-size: 3.4rem;
+    font-size: 2.25rem;
     color: #b68e54;
     font-weight: 700;
     line-height: 1.1;
@@ -424,41 +443,59 @@ const seoSchema = {
   }
   .brand-top-subtitle {
     font-family: var(--font-body);
-    font-size: 1.05rem;
-    letter-spacing: 0.32em;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
     font-weight: 600;
     color: #2E3138;
     text-transform: uppercase;
-    margin-top: 0.5rem;
+    margin-top: 0.35rem;
   }
 
   /* ==================== HERO SECTION ==================== */
   .hero-section {
-    padding: 2.5rem 0 4.5rem 0;
-    background: transparent;
+    padding: 2rem 0 4rem 0;
+    position: relative;
+    overflow: hidden;
   }
 
   .hero-container {
     display: grid;
-    grid-template-columns: 390px 1fr;
-    gap: 4rem;
-    align-items: center;
-    margin-bottom: 4rem;
+    grid-template-columns: 420px 1fr;
+    gap: 3.5rem;
+    align-items: start; /* Photo at top */
+    margin-bottom: 3.5rem;
+    position: relative;
+  }
+
+  /* Flower SVG between photo and text in background */
+  .hero-flower-wrap {
+    position: absolute;
+    top: 50%;
+    left: 42%;
+    transform: translate(-50%, -50%);
+    width: 440px;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero-flower-bg {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   .hero-media {
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 2;
   }
 
-  .arch-frame {
+  /* Full photo with rounded corners all around (not circular top) */
+  .hero-photo-frame {
     width: 100%;
-    max-width: 390px;
-    aspect-ratio: 3 / 4;
-    border-top-left-radius: 195px;
-    border-top-right-radius: 195px;
-    border-bottom-left-radius: 1.25rem;
-    border-bottom-right-radius: 1.25rem;
+    max-width: 420px;
+    border-radius: 2rem;
     overflow: hidden;
     background: #EBE2D6;
     border: 1px solid rgba(182, 142, 84, 0.2);
@@ -466,33 +503,39 @@ const seoSchema = {
 
   .hero-img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 25%;
+    height: auto;
     display: block;
+    object-fit: cover;
+  }
+
+  /* Text column starting lower down (misaligned with photo) */
+  .hero-content {
+    padding-top: 2.5rem;
+    position: relative;
+    z-index: 2;
   }
 
   .hero-title {
     font-family: var(--font-heading);
-    font-size: 3.35rem;
-    line-height: 1.15;
+    font-size: 2.35rem;
+    line-height: 1.25;
     font-weight: 600;
     color: #2E3138;
-    letter-spacing: -0.02em;
-    margin-bottom: 2rem;
+    letter-spacing: -0.015em;
+    margin-bottom: 1.75rem;
   }
 
   .hero-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2.75rem;
+    gap: 2.25rem;
   }
 
   .hero-col p {
-    font-size: 1.08rem;
-    line-height: 1.75;
+    font-size: 1.02rem;
+    line-height: 1.7;
     color: #475569;
-    margin-bottom: 1.35rem;
+    margin-bottom: 1.25rem;
   }
   .hero-col p:last-of-type {
     margin-bottom: 0;
@@ -501,107 +544,120 @@ const seoSchema = {
     color: #2E3138;
     font-weight: 600;
   }
-  .hero-col-action {
+
+  /* Hero Button under the two columns */
+  .hero-actions {
     margin-top: 2.25rem;
   }
 
-  /* Llama Wisdom Callout Card with Logo on Left */
+  /* Llama Wisdom Card: White, no border, bigger levitating llama */
   .callout-card {
     background: #FFFFFF;
-    border: 1px solid #EBE2D6;
-    border-radius: 1.25rem;
+    border: none;
+    border-radius: 1.5rem;
     padding: 2.25rem 2.75rem;
     display: flex;
     align-items: center;
     gap: 2.5rem;
     max-width: 980px;
     margin: 0 auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
   }
 
   .callout-icon-wrap {
     flex-shrink: 0;
   }
 
+  /* Smooth levitating loop animation */
   .callout-llama-icon {
-    width: 68px;
+    width: 95px;
     height: auto;
     display: block;
+    animation: llamaLevitate 3.5s ease-in-out infinite;
+  }
+
+  @keyframes llamaLevitate {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-9px);
+    }
   }
 
   .callout-inner p {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     line-height: 1.75;
     color: #475569;
   }
 
   /* ==================== HOW THE MAGIC HAPPENS ==================== */
   .method-section {
-    padding: 5.5rem 0;
+    padding: 5rem 0;
     background: #EBE2D6;
   }
 
   .method-intro {
-    max-width: 920px;
-    margin: 0 auto 3.75rem auto;
+    max-width: 900px;
+    margin: 0 auto 3.5rem auto;
   }
   .method-intro p {
-    font-size: 1.2rem;
-    line-height: 1.85;
+    font-size: 1.12rem;
+    line-height: 1.8;
     color: #384152;
-    margin-bottom: 1.65rem;
+    margin-bottom: 1.5rem;
   }
   .method-intro strong {
     color: #1F242F;
     font-weight: 600;
   }
 
-  /* Golden Highlight Banner containing 4 white cards */
+  /* Golden Highlight Banner */
   .golden-banner {
     background: #B68E54;
     color: #ffffff;
-    border-radius: 1.75rem;
-    padding: 3.75rem 2.75rem 3.25rem 2.75rem;
+    border-radius: 1.5rem;
+    padding: 3.5rem 2.5rem 3rem 2.5rem;
     box-shadow: none;
   }
 
   .banner-stars {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     letter-spacing: 0.4em;
     color: #ffffff;
     opacity: 0.95;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .banner-heading {
     font-family: var(--font-body);
-    font-size: 1.45rem;
+    font-size: 1.35rem;
     font-weight: 500;
     line-height: 1.55;
-    max-width: 860px;
-    margin: 0 auto 1.35rem auto;
+    max-width: 840px;
+    margin: 0 auto 1.25rem auto;
   }
 
   .banner-sub {
     font-family: var(--font-body);
-    font-size: 1.05rem;
+    font-size: 0.98rem;
     letter-spacing: 0.08em;
     font-weight: 600;
-    margin-bottom: 3rem;
+    margin-bottom: 2.75rem;
     opacity: 0.95;
   }
 
-  /* 4 Method Pillar Cards inside Banner */
+  /* 4 Method Pillar Cards: Bigger icon, smaller text under */
   .pillars-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   .pillar-card {
     background: #FFFFFF;
     border-radius: 1.25rem;
-    padding: 2.35rem 1.35rem 2.15rem 1.35rem;
+    padding: 2.25rem 1.15rem 1.85rem 1.15rem;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -610,89 +666,97 @@ const seoSchema = {
   }
 
   .pillar-icon-box {
-    width: 65px;
-    height: 65px;
+    width: 80px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.15rem;
   }
 
+  /* Bigger Icon */
   .pillar-icon {
-    width: 56px;
-    height: 56px;
+    width: 72px;
+    height: 72px;
     object-fit: contain;
   }
 
   .pillar-title {
     font-family: var(--font-heading);
-    font-size: 1.22rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: #B68E54;
-    margin-bottom: 0.95rem;
+    margin-bottom: 0.75rem;
     line-height: 1.25;
-    min-height: 3.1rem;
+    min-height: 2.85rem;
   }
 
+  /* Smaller Text under */
   .pillar-desc {
-    font-size: 0.98rem;
-    color: #556275;
-    line-height: 1.6;
+    font-size: 0.88rem;
+    color: #64748B;
+    line-height: 1.55;
   }
 
   /* ==================== ABOUT ME ==================== */
   .about-section {
-    padding: 5.5rem 0;
+    padding: 5rem 0;
     background: #F9F8F6;
   }
 
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4.5rem;
-    margin-bottom: 4rem;
+    gap: 4rem;
+    margin-bottom: 3.5rem;
     text-align: left;
   }
 
   .about-item {
-    margin-bottom: 2.35rem;
+    margin-bottom: 2.25rem;
     border-left: 2px solid #B68E54;
-    padding-left: 1.35rem;
+    padding-left: 1.25rem;
   }
   .about-item h3 {
     font-family: var(--font-heading);
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     font-weight: 600;
     color: #2E3138;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
   }
   .about-item p {
-    font-size: 1.08rem;
+    font-size: 1.02rem;
     line-height: 1.7;
     color: #475569;
   }
 
+  /* Passion statement: Same font as copy, bold, slightly larger */
   .passion-box {
     text-align: center;
     max-width: 860px;
-    margin: 0 auto 4rem auto;
+    margin: 0 auto 3.5rem auto;
   }
-  .passion-box p {
-    font-family: var(--font-heading);
-    font-size: 1.85rem;
-    font-weight: 500;
+  .passion-lead-text {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 700;
     color: #2E3138;
-    line-height: 1.4;
+    line-height: 1.6;
   }
 
-  /* Clean Staggered 5-Photo Grid with Subtle Hover Zoom */
+  /* 5-Photo Row: Staggered and aligning slightly on scroll */
+  .about-photos-container {
+    width: 100%;
+    padding: 1.5rem 0;
+  }
+
   .about-photos-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 1.35rem;
+    gap: 1.25rem;
     max-width: 1200px;
     margin: 0 auto;
-    align-items: start;
+    align-items: center;
   }
 
   .about-photo-card {
@@ -700,21 +764,20 @@ const seoSchema = {
     overflow: hidden;
     background: #EBE2D6;
     aspect-ratio: 3 / 4;
-    transition: transform 0.3s ease;
+    transform: translateY(calc(var(--initial-offset, 0px) * (1 - var(--align-progress, 0))));
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .photo-stagger-1 { margin-top: 0; }
-  .photo-stagger-2 { margin-top: 1.75rem; }
-  .photo-stagger-3 { margin-top: 0.5rem; aspect-ratio: 3 / 4.2; }
-  .photo-stagger-4 { margin-top: 1.75rem; }
-  .photo-stagger-5 { margin-top: 0.25rem; }
+  .photo-card-center {
+    aspect-ratio: 3 / 4.2;
+  }
 
   .about-photo-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.4s ease;
   }
   .about-photo-card:hover .about-photo-img {
     transform: scale(1.04);
@@ -722,23 +785,23 @@ const seoSchema = {
 
   /* ==================== FUTURE SECTION ==================== */
   .future-section {
-    padding: 6.5rem 0;
+    padding: 6rem 0;
     background: #FAF7F2;
     text-align: center;
   }
 
   .future-content {
-    max-width: 860px;
+    max-width: 840px;
     margin: 0 auto;
   }
 
   .future-title {
     font-family: var(--font-heading);
-    font-size: 3.35rem;
+    font-size: 2.35rem;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1.25;
     letter-spacing: -0.01em;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.25rem;
   }
   .future-title-gold {
     color: #b68e54;
@@ -748,22 +811,22 @@ const seoSchema = {
   }
 
   .future-narrative p {
-    font-size: 1.18rem;
-    line-height: 1.85;
+    font-size: 1.12rem;
+    line-height: 1.8;
     color: #475569;
-    margin-bottom: 1.65rem;
+    margin-bottom: 1.5rem;
   }
   .future-closing {
     color: #2E3138 !important;
   }
 
   .future-actions {
-    margin-top: 3rem;
+    margin-top: 2.75rem;
   }
 
   /* ==================== LATEST ARTICLES ==================== */
   .articles-section {
-    padding: 5.5rem 0 6.5rem 0;
+    padding: 5rem 0 6rem 0;
     background: #FFFFFF;
   }
 
@@ -777,23 +840,27 @@ const seoSchema = {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    padding: 1.35rem 0.75rem;
+    padding: 1.25rem 0.5rem;
     border-bottom: 1px solid #EBE2D6;
     text-decoration: none;
     color: #2E3138;
     transition: color 0.2s ease, padding 0.2s ease;
   }
 
+  .article-row.is-extra-hidden {
+    display: none;
+  }
+
   .article-row:hover {
     color: #b68e54;
-    padding-left: 1.15rem;
+    padding-left: 0.85rem;
   }
 
   .article-date {
-    font-size: 1.05rem;
+    font-size: 0.98rem;
     color: #64748B;
     font-family: var(--font-body);
-    min-width: 110px;
+    min-width: 105px;
   }
 
   .article-divider {
@@ -801,7 +868,7 @@ const seoSchema = {
   }
 
   .article-title {
-    font-size: 1.18rem;
+    font-size: 1.1rem;
     font-weight: 500;
     flex: 1;
     font-family: var(--font-body);
@@ -816,32 +883,44 @@ const seoSchema = {
     transform: translateX(4px);
   }
 
-  /* ==================== RESPONSIVE BREAKPOINTS ==================== */
+  /* ==================== RESPONSIVE BREAKPOINTS (Mobile Mode) ==================== */
   @media (max-width: 1024px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-content {
+      padding-top: 1.5rem;
+    }
     .pillars-grid {
       grid-template-columns: repeat(2, 1fr);
     }
     .about-photos-grid {
       grid-template-columns: repeat(3, 1fr);
     }
-    .hero-container {
-      grid-template-columns: 1fr;
-      text-align: center;
-    }
-    .hero-media {
-      margin-bottom: 1.5rem;
-    }
-    .photo-stagger-1, .photo-stagger-2, .photo-stagger-3, .photo-stagger-4, .photo-stagger-5 {
-      margin-top: 0;
+    .hero-flower-wrap {
+      left: 50%;
+      top: 40%;
+      width: 320px;
     }
   }
 
   @media (max-width: 768px) {
+    /* Headings smaller on mobile */
+    .section-title,
+    .brand-top-title,
+    .hero-title,
+    .future-title {
+      font-size: 1.85rem;
+    }
+
     .hero-columns {
       grid-template-columns: 1fr;
+      gap: 1.25rem;
     }
     .about-grid {
       grid-template-columns: 1fr;
+      gap: 2rem;
     }
     .pillars-grid {
       grid-template-columns: 1fr;
@@ -849,13 +928,76 @@ const seoSchema = {
     .about-photos-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+    
+    /* Llama in llama box: FULL SIZED on mobile */
     .callout-card {
       flex-direction: column;
       text-align: center;
-      padding: 1.75rem;
+      padding: 2rem 1.5rem;
+      gap: 1.5rem;
     }
-    .hero-title, .brand-top-title, .future-title {
-      font-size: 2.45rem;
+    .callout-llama-icon {
+      width: 110px; /* Full sized on mobile */
+      margin: 0 auto;
+    }
+
+    .hero-photo-frame {
+      max-width: 320px;
+      margin: 0 auto;
+      border-radius: 1.5rem;
+    }
+    .hero-flower-wrap {
+      width: 260px;
     }
   }
 </style>
+
+<!-- Micro-interactions: Photo alignment on scroll & In-place article loading -->
+<script>
+  function setupPageScripts() {
+    // 1. Photo alignment on scroll
+    const container = document.getElementById('photosScrollContainer');
+    const grid = document.getElementById('photosGrid');
+    
+    if (container && grid) {
+      function onScroll() {
+        const rect = container.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Calculate progress as container enters viewport (0 when entering, 1 when fully centered)
+        const progress = Math.min(Math.max((windowHeight - rect.top) / (windowHeight * 0.75), 0), 1);
+        grid.style.setProperty('--align-progress', progress.toString());
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+
+    // 2. Load more articles in place on home page
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const loadMoreWrap = document.getElementById('loadMoreWrap');
+    
+    if (loadMoreBtn && loadMoreWrap) {
+      loadMoreBtn.addEventListener('click', () => {
+        const hiddenArticles = document.querySelectorAll('.article-row.is-extra-hidden');
+        // Reveal next batch of 4 articles
+        let revealedCount = 0;
+        hiddenArticles.forEach((art, idx) => {
+          if (idx < 4) {
+            art.classList.remove('is-extra-hidden');
+            revealedCount++;
+          }
+        });
+
+        // Hide button if no more articles
+        const remainingHidden = document.querySelectorAll('.article-row.is-extra-hidden');
+        if (remainingHidden.length === 0) {
+          loadMoreWrap.style.display = 'none';
+        }
+      });
+    }
+  }
+
+  setupPageScripts();
+  document.addEventListener('astro:page-load', setupPageScripts);
+</script>

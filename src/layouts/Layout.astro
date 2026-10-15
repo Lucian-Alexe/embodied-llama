@@ -25,12 +25,12 @@ const { title, description, image, schema } = Astro.props;
     <slot name="head" />
   </head>
   <body>
-    <!-- Floating Minimal Top Menu (Links Only, as in PDF) -->
+    <!-- Floating Minimal Top Menu (Links Only, single row on mobile) -->
     <header class="floating-nav-header" id="siteHeader">
       <nav class="nav-links-bar" aria-label="Main Navigation">
         <a href="#method" class="nav-link">The Method</a>
         <a href="#about" class="nav-link">About Me</a>
-        <a href="/articles" class="nav-link">Articles</a>
+        <a href="#articles" class="nav-link">Articles</a>
         <button type="button" class="nav-link nav-btn-link" data-open-modal>Contact</button>
       </nav>
     </header>
@@ -39,7 +39,7 @@ const { title, description, image, schema } = Astro.props;
       <slot />
     </main>
 
-    <!-- Footer with Large Llama Illustration and Smooth Glow -->
+    <!-- Footer with Large Llama Illustration and Smooth Looping Ambient Glow -->
     <footer class="site-footer" id="siteFooter">
       <div class="footer-radial-glow" aria-hidden="true"></div>
       <div class="footer-content">
@@ -48,8 +48,8 @@ const { title, description, image, schema } = Astro.props;
           src="/assets/final-illustration.svg"
           alt="Embodied Llama Emblem"
           class="footer-big-illustration"
-          width="380"
-          height="342"
+          width="360"
+          height="324"
           loading="lazy"
         />
         
@@ -61,7 +61,7 @@ const { title, description, image, schema } = Astro.props;
         <div class="footer-links">
           <a href="#method">The Method</a>
           <a href="#about">About Me</a>
-          <a href="/articles">Articles</a>
+          <a href="#articles">Articles</a>
           <button type="button" class="footer-link-btn" data-open-modal>Contact</button>
           <a href="/admin">Admin</a>
         </div>
@@ -98,7 +98,7 @@ const { title, description, image, schema } = Astro.props;
     background-color: var(--bg-canvas);
     color: var(--text-primary);
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.65;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
   }
@@ -110,12 +110,12 @@ const { title, description, image, schema } = Astro.props;
     overflow-x: hidden;
   }
 
-  /* Floating Minimal Header (Links Only, as requested) */
+  /* Floating Minimal Header (Links Only, Single Row) */
   .floating-nav-header {
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 1rem 1.5rem;
+    padding: 0.85rem 1.25rem;
     display: flex;
     justify-content: center;
     background: rgba(250, 247, 242, 0.94);
@@ -126,14 +126,15 @@ const { title, description, image, schema } = Astro.props;
   .nav-links-bar {
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: 2.75rem;
+    white-space: nowrap;
   }
 
   .nav-link, .nav-btn-link {
     text-decoration: none;
     color: #4A4D54;
     font-family: var(--font-body);
-    font-size: 1.15rem;
+    font-size: 0.98rem;
     font-weight: 500;
     letter-spacing: 0.02em;
     transition: color 0.2s ease;
@@ -141,6 +142,7 @@ const { title, description, image, schema } = Astro.props;
     border: none;
     cursor: pointer;
     padding: 0;
+    white-space: nowrap;
   }
 
   .nav-link:hover, .nav-btn-link:hover {
@@ -155,16 +157,18 @@ const { title, description, image, schema } = Astro.props;
   /* Buttons: Clean, flat, NO artificial glow */
   .btn-primary {
     display: inline-block;
-    padding: 0.75rem 2.25rem;
+    padding: 0.85rem 2.5rem;
     background: var(--brand-gold);
     color: #ffffff;
     border: none;
     border-radius: 9999px;
     font-family: var(--font-body);
-    font-size: 1.15rem;
+    font-size: 1rem;
     font-weight: 600;
+    letter-spacing: 0.02em;
     cursor: pointer;
-    box-shadow: none; /* Removed glow behind buttons */
+    box-shadow: none;
+    text-decoration: none;
     transition: background 0.2s ease, transform 0.15s ease;
   }
 
@@ -174,24 +178,24 @@ const { title, description, image, schema } = Astro.props;
     box-shadow: none;
   }
 
-  /* Footer Section with Large Llama & Smooth Radial Glow */
+  /* Footer Section with Large Llama & Looping Glow */
   .site-footer {
     position: relative;
     overflow: hidden;
-    padding: 6.5rem 1.5rem 4.5rem 1.5rem;
+    padding: 5.5rem 1.5rem 4rem 1.5rem;
     background: #1e222a;
     color: #f5f3ef;
     text-align: center;
   }
 
-  /* Ambient circular gradient that glows and breathes continuously on a loop */
+  /* Ambient radial glow that loops continuously without user interaction */
   .footer-radial-glow {
     position: absolute;
-    top: 40%;
+    top: 38%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 780px;
-    height: 780px;
+    width: 700px;
+    height: 700px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(182, 142, 84, 0.22) 0%, rgba(45, 54, 70, 0.42) 45%, rgba(30, 34, 42, 0) 70%);
     pointer-events: none;
@@ -219,7 +223,7 @@ const { title, description, image, schema } = Astro.props;
   .footer-content {
     position: relative;
     z-index: 1;
-    max-width: 700px;
+    max-width: 650px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -228,10 +232,10 @@ const { title, description, image, schema } = Astro.props;
 
   .footer-big-illustration {
     display: block;
-    width: 380px;
-    max-width: 90vw;
+    width: 320px;
+    max-width: 85vw;
     height: auto;
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
     transition: transform 0.4s ease;
   }
   .footer-big-illustration:hover {
@@ -242,12 +246,13 @@ const { title, description, image, schema } = Astro.props;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
   }
 
+  /* Footer title smaller as requested */
   .footer-brand-title {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: 1.75rem;
     color: #f5f3ef;
     font-weight: 700;
     letter-spacing: -0.01em;
@@ -256,27 +261,30 @@ const { title, description, image, schema } = Astro.props;
 
   .footer-brand-subtitle {
     font-family: var(--font-body);
-    font-size: 0.95rem;
-    letter-spacing: 0.25em;
+    font-size: 0.78rem;
+    letter-spacing: 0.24em;
     font-weight: 600;
     color: var(--brand-gold);
     text-transform: uppercase;
     margin-top: 0.35rem;
   }
 
+  /* Corrected line-height and spacing in footer links */
   .footer-links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 2.25rem;
-    margin-bottom: 2.5rem;
+    gap: 0.85rem 1.75rem;
+    line-height: 1.3;
+    margin-bottom: 2rem;
   }
 
   .footer-links a, .footer-link-btn {
     text-decoration: none;
     color: #b3b7bf;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     font-family: var(--font-body);
+    line-height: 1.3;
     background: none;
     border: none;
     cursor: pointer;
@@ -289,7 +297,28 @@ const { title, description, image, schema } = Astro.props;
   }
 
   .footer-copy {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: #787d88;
+    line-height: 1.4;
+  }
+
+  /* Mobile menu buttons & headings */
+  @media (max-width: 640px) {
+    .floating-nav-header {
+      padding: 0.65rem 0.75rem;
+    }
+    .nav-links-bar {
+      gap: 1.15rem;
+    }
+    .nav-link, .nav-btn-link {
+      font-size: 0.85rem;
+    }
+    .footer-links {
+      gap: 0.65rem 1.25rem;
+      line-height: 1.3;
+    }
+    .footer-brand-title {
+      font-size: 1.5rem;
+    }
   }
 </style>
