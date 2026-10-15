@@ -46,8 +46,8 @@ const seoSchema = {
   description="Embodied Llama — Somatic Coaching to step out of survival mode, regulate your nervous system, and reconnect with the wisdom of your body."
   schema={seoSchema}
 >
-  <!-- ==================== TOP BRAND HEADER (Bigger logo, smaller font as requested) ==================== -->
-  <header class="page-top-brand">
+  <!-- ==================== TOP BRAND HEADER ==================== -->
+  <header class="page-top-brand" id="top">
     <div class="container text-center">
       <img
         src="/assets/logo.svg"
@@ -65,7 +65,7 @@ const seoSchema = {
   <!-- ==================== HERO SECTION ==================== -->
   <section class="hero-section">
     <div class="container hero-container">
-      <!-- Background Flower SVG positioned subtly between photo and text as in PDF -->
+      <!-- Background Flower SVG positioned between photo and text in warm gold -->
       <div class="hero-flower-wrap" aria-hidden="true">
         <img src="/assets/flower.svg" alt="" class="hero-flower-bg" width="460" height="460" />
       </div>
@@ -84,7 +84,7 @@ const seoSchema = {
         </div>
       </div>
 
-      <!-- Right: Headline and 2-column narrative starting lower down (misaligned) -->
+      <!-- Right: Headline and 2-column narrative starting even lower down -->
       <div class="hero-content">
         <h2 class="hero-title">Returning to the<br />wisdom of your body</h2>
 
@@ -115,7 +115,7 @@ const seoSchema = {
       </div>
     </div>
 
-    <!-- Llama Wisdom Callout Card: White, no border, bigger levitating llama -->
+    <!-- Llama Wisdom Callout Card: White, no border, 30% illustration column with levitating llama -->
     <div class="container">
       <div class="callout-card">
         <div class="callout-icon-wrap">
@@ -123,8 +123,8 @@ const seoSchema = {
             src="/assets/logo.svg"
             alt="Embodied Llama Emblem"
             class="callout-llama-icon"
-            width="95"
-            height="107"
+            width="150"
+            height="169"
             loading="lazy"
           />
         </div>
@@ -158,7 +158,7 @@ const seoSchema = {
         </h3>
         <p class="banner-sub">Here is what we weave in our sessions:</p>
 
-        <!-- 4 Method Pillar Cards: Bigger icon, smaller text under as requested -->
+        <!-- 4 Method Pillar Cards: Main title in copy font (Plus Jakarta Sans) -->
         <div class="pillars-grid">
           <!-- Pillar 1 -->
           <div class="pillar-card">
@@ -268,10 +268,10 @@ const seoSchema = {
         </p>
       </div>
 
-      <!-- 5-Photo Row: Staggered and gently aligning on scroll -->
+      <!-- 5-Photo Row: Staggered on desktop, all centered on responsive/mobile -->
       <div class="about-photos-container" id="photosScrollContainer">
         <div class="about-photos-grid" id="photosGrid">
-          <div class="about-photo-card" style="--initial-offset: -20px;">
+          <div class="about-photo-card photo-card-1" style="--initial-offset: -20px;">
             <img
               src="/assets/photos/about-1.jpeg"
               alt="Beach sunset yoga pose — Somatic coaching practice"
@@ -279,7 +279,7 @@ const seoSchema = {
               loading="lazy"
             />
           </div>
-          <div class="about-photo-card" style="--initial-offset: 35px;">
+          <div class="about-photo-card photo-card-2" style="--initial-offset: 35px;">
             <img
               src="/assets/photos/about-2.jpeg"
               alt="Warm vibrant connection in nature — Somatic coaching"
@@ -295,7 +295,7 @@ const seoSchema = {
               loading="lazy"
             />
           </div>
-          <div class="about-photo-card" style="--initial-offset: 35px;">
+          <div class="about-photo-card photo-card-4" style="--initial-offset: 35px;">
             <img
               src="/assets/photos/about-4.jpeg"
               alt="Authentic joy and companion connection — Somatic coach"
@@ -303,7 +303,7 @@ const seoSchema = {
               loading="lazy"
             />
           </div>
-          <div class="about-photo-card" style="--initial-offset: -15px;">
+          <div class="about-photo-card photo-card-5" style="--initial-offset: -15px;">
             <img
               src="/assets/photos/about-5.jpeg"
               alt="Joyful connection at local market — Embodied living"
@@ -413,7 +413,7 @@ const seoSchema = {
     box-shadow: none;
   }
 
-  /* Section Title with Balanced Typography Ratio */
+  /* Section Title */
   .section-title {
     font-family: var(--font-heading);
     font-size: 2.15rem;
@@ -425,7 +425,7 @@ const seoSchema = {
 
   /* ==================== TOP BRAND HEADER ==================== */
   .page-top-brand {
-    padding: 2.25rem 0 1.5rem 0;
+    padding: 2.75rem 0 2rem 0;
   }
   .brand-top-logo {
     display: block;
@@ -451,9 +451,9 @@ const seoSchema = {
     margin-top: 0.35rem;
   }
 
-  /* ==================== HERO SECTION ==================== */
+  /* ==================== HERO SECTION (More margin top, text lower down) ==================== */
   .hero-section {
-    padding: 2rem 0 4rem 0;
+    padding: 4.5rem 0 5.5rem 0;
     position: relative;
     overflow: hidden;
   }
@@ -461,20 +461,20 @@ const seoSchema = {
   .hero-container {
     display: grid;
     grid-template-columns: 420px 1fr;
-    gap: 3.5rem;
+    gap: 3.75rem;
     align-items: start; /* Photo at top */
     margin-bottom: 3.5rem;
     position: relative;
   }
 
-  /* Flower SVG between photo and text in background */
+  /* Flower SVG between photo and text in warm gold (#b68e54) */
   .hero-flower-wrap {
     position: absolute;
-    top: 50%;
-    left: 42%;
+    top: 45%;
+    left: 40%;
     transform: translate(-50%, -50%);
     width: 440px;
-    opacity: 0.18;
+    opacity: 0.25;
     pointer-events: none;
     z-index: 1;
   }
@@ -491,7 +491,7 @@ const seoSchema = {
     z-index: 2;
   }
 
-  /* Full photo with rounded corners all around (not circular top) */
+  /* Full photo with rounded corners all around */
   .hero-photo-frame {
     width: 100%;
     max-width: 420px;
@@ -510,7 +510,7 @@ const seoSchema = {
 
   /* Text column starting lower down (misaligned with photo) */
   .hero-content {
-    padding-top: 2.5rem;
+    padding-top: 5.5rem;
     position: relative;
     z-index: 2;
   }
@@ -550,27 +550,37 @@ const seoSchema = {
     margin-top: 2.25rem;
   }
 
-  /* Llama Wisdom Card: White, no border, bigger levitating llama */
+  /* Llama Wisdom Card: White, no border, 30% width for illustration */
   .callout-card {
     background: #FFFFFF;
     border: none;
     border-radius: 1.5rem;
-    padding: 2.25rem 2.75rem;
+    padding: 2.5rem 3rem;
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 3.5rem;
     max-width: 980px;
     margin: 0 auto;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
   }
 
   .callout-icon-wrap {
-    flex-shrink: 0;
+    flex: 0 0 30%;
+    max-width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .callout-inner {
+    flex: 0 0 70%;
+    max-width: 70%;
   }
 
   /* Smooth levitating loop animation */
   .callout-llama-icon {
-    width: 95px;
+    width: 100%;
+    max-width: 160px;
     height: auto;
     display: block;
     animation: llamaLevitate 3.5s ease-in-out infinite;
@@ -647,7 +657,7 @@ const seoSchema = {
     opacity: 0.95;
   }
 
-  /* 4 Method Pillar Cards: Bigger icon, smaller text under */
+  /* 4 Method Pillar Cards: Titles in copy font (Plus Jakarta Sans) */
   .pillars-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -674,24 +684,23 @@ const seoSchema = {
     margin-bottom: 1.15rem;
   }
 
-  /* Bigger Icon */
   .pillar-icon {
     width: 72px;
     height: 72px;
     object-fit: contain;
   }
 
+  /* Main title in copy font */
   .pillar-title {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-family: var(--font-body);
+    font-size: 1.12rem;
+    font-weight: 700;
     color: #B68E54;
     margin-bottom: 0.75rem;
-    line-height: 1.25;
-    min-height: 2.85rem;
+    line-height: 1.35;
+    min-height: 3rem;
   }
 
-  /* Smaller Text under */
   .pillar-desc {
     font-size: 0.88rem;
     color: #64748B;
@@ -700,8 +709,12 @@ const seoSchema = {
 
   /* ==================== ABOUT ME ==================== */
   .about-section {
-    padding: 5rem 0;
+    padding: 5.5rem 0;
     background: #F9F8F6;
+  }
+
+  .about-section .section-title {
+    margin-bottom: 4rem; /* More margin between heading and entries */
   }
 
   .about-grid {
@@ -717,10 +730,12 @@ const seoSchema = {
     border-left: 2px solid #B68E54;
     padding-left: 1.25rem;
   }
+
+  /* About me entries headings in copy font */
   .about-item h3 {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-family: var(--font-body);
+    font-size: 1.18rem;
+    font-weight: 700;
     color: #2E3138;
     margin-bottom: 0.35rem;
   }
@@ -730,7 +745,7 @@ const seoSchema = {
     color: #475569;
   }
 
-  /* Passion statement: Same font as copy, bold, slightly larger */
+  /* Passion statement */
   .passion-box {
     text-align: center;
     max-width: 860px;
@@ -744,7 +759,7 @@ const seoSchema = {
     line-height: 1.6;
   }
 
-  /* 5-Photo Row: Staggered and aligning slightly on scroll */
+  /* 5-Photo Row: Desktop staggered alignment, responsive centered */
   .about-photos-container {
     width: 100%;
     padding: 1.5rem 0;
@@ -883,7 +898,7 @@ const seoSchema = {
     transform: translateX(4px);
   }
 
-  /* ==================== RESPONSIVE BREAKPOINTS (Mobile Mode) ==================== */
+  /* ==================== RESPONSIVE BREAKPOINTS ==================== */
   @media (max-width: 1024px) {
     .hero-container {
       grid-template-columns: 1fr;
@@ -895,9 +910,6 @@ const seoSchema = {
     .pillars-grid {
       grid-template-columns: repeat(2, 1fr);
     }
-    .about-photos-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
     .hero-flower-wrap {
       left: 50%;
       top: 40%;
@@ -905,8 +917,22 @@ const seoSchema = {
     }
   }
 
+  /* Responsive centered About Me photos */
+  @media (max-width: 960px) {
+    .about-photos-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.25rem;
+    }
+    .about-photo-card {
+      flex: 0 0 calc(33.333% - 1rem);
+      max-width: 220px;
+      transform: none !important;
+    }
+  }
+
   @media (max-width: 768px) {
-    /* Headings smaller on mobile */
     .section-title,
     .brand-top-title,
     .hero-title,
@@ -925,19 +951,41 @@ const seoSchema = {
     .pillars-grid {
       grid-template-columns: 1fr;
     }
-    .about-photos-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
     
-    /* Llama in llama box: FULL SIZED on mobile */
+    /* Centered 2-row layout on mobile, last photo centered */
+    .about-photos-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.25rem;
+    }
+    .about-photo-card {
+      flex: 0 0 calc(50% - 0.75rem);
+      max-width: 220px;
+      transform: none !important;
+    }
+    .about-photo-card:last-child {
+      margin: 0 auto;
+    }
+
+    /* Llama in llama box on mobile: centered, full sized */
     .callout-card {
       flex-direction: column;
       text-align: center;
       padding: 2rem 1.5rem;
       gap: 1.5rem;
     }
+    .callout-icon-wrap {
+      flex: 0 0 auto;
+      max-width: 100%;
+    }
+    .callout-inner {
+      flex: 0 0 auto;
+      max-width: 100%;
+    }
     .callout-llama-icon {
-      width: 110px; /* Full sized on mobile */
+      width: 110px;
+      max-width: 110px;
       margin: 0 auto;
     }
 
@@ -950,21 +998,33 @@ const seoSchema = {
       width: 260px;
     }
   }
+
+  @media (max-width: 480px) {
+    .about-photo-card {
+      flex: 0 0 85%;
+      max-width: 280px;
+      margin: 0 auto !important;
+      transform: none !important;
+    }
+  }
 </style>
 
 <!-- Micro-interactions: Photo alignment on scroll & In-place article loading -->
 <script>
   function setupPageScripts() {
-    // 1. Photo alignment on scroll
+    // 1. Photo alignment on scroll (desktop only)
     const container = document.getElementById('photosScrollContainer');
     const grid = document.getElementById('photosGrid');
     
     if (container && grid) {
       function onScroll() {
+        if (window.innerWidth <= 960) {
+          grid.style.removeProperty('--align-progress');
+          return;
+        }
         const rect = container.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
-        // Calculate progress as container enters viewport (0 when entering, 1 when fully centered)
         const progress = Math.min(Math.max((windowHeight - rect.top) / (windowHeight * 0.75), 0), 1);
         grid.style.setProperty('--align-progress', progress.toString());
       }
@@ -980,16 +1040,12 @@ const seoSchema = {
     if (loadMoreBtn && loadMoreWrap) {
       loadMoreBtn.addEventListener('click', () => {
         const hiddenArticles = document.querySelectorAll('.article-row.is-extra-hidden');
-        // Reveal next batch of 4 articles
-        let revealedCount = 0;
         hiddenArticles.forEach((art, idx) => {
           if (idx < 4) {
             art.classList.remove('is-extra-hidden');
-            revealedCount++;
           }
         });
 
-        // Hide button if no more articles
         const remainingHidden = document.querySelectorAll('.article-row.is-extra-hidden');
         if (remainingHidden.length === 0) {
           loadMoreWrap.style.display = 'none';
