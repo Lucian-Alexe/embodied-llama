@@ -4,7 +4,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://embodied-llama.com',
+  site: 'https://embodiedllama.com',
   output: 'static',
   adapter: cloudflare({
     imageService: 'compile',
