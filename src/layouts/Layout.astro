@@ -1,0 +1,143 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  schema?: Record<string, any>;
+}
+
+const { title, description, image, schema } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} image={image} schema={schema} />
+    <slot name="head" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav-container">
+        <a href="/" class="brand-link">
+          <span class="brand-name">Embodied Llama</span>
+        </a>
+        <div class="nav-links">
+          <a href="/articles" class="nav-link">Articles</a>
+          <a href="/admin" class="nav-link admin-nav-pill">Admin</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <p>&copy; {new Date().getFullYear()} Embodied Llama. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --font-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --primary-color: #2563eb;
+    --text-color: #1e293b;
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-family: var(--font-fallback);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-header {
+    border-bottom: 1px solid var(--border-color);
+    background: var(--card-bg);
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand-link {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-color);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: #475569;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.15s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--primary-color);
+  }
+
+  .admin-nav-pill {
+    padding: 0.35rem 0.75rem;
+    background: #f1f5f9;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .admin-nav-pill:hover {
+    background: #e2e8f0;
+  }
+
+  #main-content {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--border-color);
+    background: var(--card-bg);
+    padding: 1.5rem;
+    text-align: center;
+    color: #64748b;
+    font-size: 0.875rem;
+  }
+</style>
+

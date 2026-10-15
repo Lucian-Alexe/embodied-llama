@@ -1,0 +1,118 @@
+---
+export const prerender = false;
+
+import Layout from '../../layouts/Layout.astro';
+import { getD1, getAllArticles } from '../../lib/db';
+
+const d1 = getD1(Astro.locals);
+const all = await getAllArticles(d1);
+const articles = all.filter((a) => a.status === 'published');
+---
+
+<Layout
+  title="Articles"
+  description="Explore the latest articles, insights, and updates from Embodied Llama."
+>
+  <div class="articles-index">
+    <header class="index-header">
+      <h1>Latest Articles</h1>
+      <p>News, technical deep-dives, and updates from the Embodied Llama team.</p>
+    </header>
+
+    {articles.length === 0 ? (
+      <div class="empty-state">
+        <p>No published articles yet. Check back soon!</p>
+      </div>
+    ) : (
+      <div class="articles-grid">
+        {articles.map((art) => (
+          <article class="article-card">
+            <h2>
+              <a href={`/articles/${art.slug}`}>{art.title}</a>
+            </h2>
+            {art.description && <p class="card-desc">{art.description}</p>}
+            <div class="card-footer">
+              <time datetime={art.created_at}>
+                {new Date(art.created_at || Date.now()).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </time>
+              <a href={`/articles/${art.slug}`} class="read-more">Read Article →</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</Layout>
+
+<style>
+  .articles-index {
+    max-width: 900px;
+    margin: 2rem auto;
+  }
+  .index-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .index-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+  .index-header p {
+    color: #64748b;
+    font-size: 1.15rem;
+  }
+  .articles-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .article-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  .article-card h2 {
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+  }
+  .article-card h2 a {
+    color: #0f172a;
+    text-decoration: none;
+  }
+  .article-card h2 a:hover {
+    color: var(--primary-color, #2563eb);
+  }
+  .card-desc {
+    color: #64748b;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #94a3b8;
+  }
+  .read-more {
+    color: var(--primary-color, #2563eb);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .empty-state {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+  }
+</style>
+

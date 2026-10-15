@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://embodiedllama.pages.dev/sitemap-index.xml
+

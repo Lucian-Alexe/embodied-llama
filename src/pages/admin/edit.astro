@@ -1,0 +1,284 @@
+---
+export const prerender = false;
+
+import { isAuthenticated } from '../../lib/auth';
+import { getD1, getArticleById } from '../../lib/db';
+
+const cookie = Astro.request.headers.get('cookie');
+if (!isAuthenticated(cookie, Astro.locals?.runtime?.env)) {
+  return Astro.redirect('/admin/login');
+}
+
+const id = Astro.url.searchParams.get('id');
+const d1 = getD1(Astro.locals);
+const article = id ? await getArticleById(d1, id) : null;
+const isEditing = !!article;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{isEditing ? `Edit: ${article?.title}` : 'New Article'} | Embodied Llama</title>
+    <style>
+      :root {
+        --primary: #4f46e5;
+        --primary-hover: #4338ca;
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --border: #e2e8f0;
+        --text: #0f172a;
+        --muted: #64748b;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+      header {
+        background: var(--card);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.15s ease;
+        border: none;
+      }
+      .btn-primary { background: var(--primary); color: white; }
+      .btn-primary:hover { background: var(--primary-hover); }
+      .btn-outline {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text);
+      }
+      .btn-outline:hover { background: #f1f5f9; }
+      
+      main {
+        max-width: 1000px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 2rem;
+      }
+      .field { margin-bottom: 1.25rem; }
+      .row {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1.5rem;
+      }
+      @media (max-width: 768px) {
+        .row { grid-template-columns: 1fr; }
+      }
+      label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+      input, textarea, select {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        font-size: 0.95rem;
+        outline: none;
+      }
+      textarea { font-family: inherit; }
+      input:focus, textarea:focus, select:focus { border-color: var(--primary); }
+      
+      .content-editor {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+      @media (max-width: 850px) {
+        .content-editor { grid-template-columns: 1fr; }
+      }
+      #editorContent {
+        min-height: 400px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      #previewBox {
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        background: #fdfdfd;
+        overflow-y: auto;
+        max-height: 400px;
+      }
+      .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="/admin" class="btn btn-outline">← Back to Articles</a>
+        <h1 style="font-size: 1.15rem; font-weight: 700;">
+          {isEditing ? 'Edit Article' : 'Create Article'}
+        </h1>
+      </div>
+      <div>
+        <a href="/" target="_blank" class="btn btn-outline">Preview Site ↗</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="card">
+        <form id="articleForm">
+          <input type="hidden" id="articleId" name="id" value={article?.id || ''} />
+
+          <div class="row">
+            <div class="field">
+              <label for="title">Article Title</label>
+              <input type="text" id="title" name="title" required value={article?.title || ''} placeholder="e.g. Introducing Embodied Llama" />
+            </div>
+
+            <div class="field">
+              <label for="status">Publication Status</label>
+              <select id="status" name="status">
+                <option value="draft" selected={article?.status === 'draft'}>Draft</option>
+                <option value="published" selected={article?.status === 'published'}>Published</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="slug">URL Slug (SEO friendly)</label>
+            <input type="text" id="slug" name="slug" required value={article?.slug || ''} placeholder="introducing-embodied-llama" />
+          </div>
+
+          <div class="field">
+            <label for="description">Meta Description (Excerpt)</label>
+            <textarea id="description" name="description" rows="2" placeholder="Brief summary for search engines and preview cards">{article?.description || ''}</textarea>
+          </div>
+
+          <div class="field">
+            <label>Content (Markdown / Text)</label>
+            <div class="content-editor">
+              <div>
+                <textarea id="editorContent" name="content" placeholder="Write your article in Markdown here...">{article?.content || ''}</textarea>
+              </div>
+              <div id="previewBox">
+                <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 700;">Live Preview</div>
+                <div id="previewOutput"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <a href="/admin" class="btn btn-outline">Cancel</a>
+            <button type="submit" id="saveBtn" class="btn btn-primary">Save Article</button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      const titleInput = document.getElementById('title') as HTMLInputElement;
+      const slugInput = document.getElementById('slug') as HTMLInputElement;
+      const editor = document.getElementById('editorContent') as HTMLTextAreaElement;
+      const preview = document.getElementById('previewOutput') as HTMLDivElement;
+      const form = document.getElementById('articleForm') as HTMLFormElement;
+      const saveBtn = document.getElementById('saveBtn') as HTMLButtonElement;
+
+      // Auto-generate slug from title if user hasn't typed a custom slug
+      let userTouchedSlug = slugInput.value.length > 0;
+      slugInput.addEventListener('input', () => { userTouchedSlug = true; });
+
+      titleInput.addEventListener('input', () => {
+        if (!userTouchedSlug) {
+          slugInput.value = titleInput.value
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+        }
+      });
+
+      // Quick markdown preview renderer
+      function updatePreview() {
+        const raw = editor.value;
+        if (!raw.trim()) {
+          preview.innerHTML = '<p style="color: #94a3b8; font-style: italic;">Preview will appear here...</p>';
+          return;
+        }
+
+        // Basic markdown transforms for headers, bold, italics, paragraphs
+        let html = raw
+          .replace(/^### (.*$)/gim, '<h3 style="margin: 0.75rem 0 0.5rem 0; font-size: 1.15rem;">$1</h3>')
+          .replace(/^## (.*$)/gim, '<h2 style="margin: 1rem 0 0.5rem 0; font-size: 1.35rem;">$1</h2>')
+          .replace(/^# (.*$)/gim, '<h1 style="margin: 1.25rem 0 0.75rem 0; font-size: 1.6rem;">$1</h1>')
+          .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+          .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+          .replace(/\n\n/gim, '</p><p style="margin-bottom: 0.75rem;">')
+          .replace(/\n/gim, '<br/>');
+
+        preview.innerHTML = `<p style="margin-bottom: 0.75rem;">${html}</p>`;
+      }
+
+      editor.addEventListener('input', updatePreview);
+      updatePreview();
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        saveBtn.disabled = true;
+        saveBtn.innerText = 'Saving...';
+
+        const payload = {
+          id: (document.getElementById('articleId') as HTMLInputElement).value || undefined,
+          title: titleInput.value,
+          slug: slugInput.value,
+          description: (document.getElementById('description') as HTMLTextAreaElement).value,
+          content: editor.value,
+          status: (document.getElementById('status') as HTMLSelectElement).value,
+        };
+
+        try {
+          const res = await fetch('/api/articles', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          const data = await res.json();
+          if (res.ok && data.success) {
+            window.location.href = '/admin';
+          } else {
+            alert(data.error || 'Failed to save article.');
+            saveBtn.disabled = false;
+            saveBtn.innerText = 'Save Article';
+          }
+        } catch {
+          alert('Network error while saving.');
+          saveBtn.disabled = false;
+          saveBtn.innerText = 'Save Article';
+        }
+      });
+    </script>
+  </body>
+</html>
+

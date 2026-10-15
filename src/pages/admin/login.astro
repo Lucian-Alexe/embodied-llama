@@ -1,0 +1,163 @@
+---
+export const prerender = false;
+
+import { isAuthenticated } from '../../lib/auth';
+
+const cookie = Astro.request.headers.get('cookie');
+if (isAuthenticated(cookie, Astro.locals?.runtime?.env)) {
+  return Astro.redirect('/admin');
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login | Embodied Llama</title>
+    <style>
+      :root {
+        --primary: #4f46e5;
+        --primary-hover: #4338ca;
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --border: #e2e8f0;
+        --text: #0f172a;
+        --muted: #64748b;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 1.5rem;
+      }
+      .login-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 2.5rem;
+        max-width: 420px;
+        width: 100%;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+      }
+      .brand-badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        background: #eef2ff;
+        color: var(--primary);
+        font-size: 0.75rem;
+        font-weight: 700;
+        border-radius: 9999px;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      h1 { font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700; }
+      p { color: var(--muted); font-size: 0.875rem; margin-bottom: 1.75rem; line-height: 1.5; }
+      .field { margin-bottom: 1.25rem; }
+      label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; }
+      input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border-color 0.15s ease;
+      }
+      input:focus { border-color: var(--primary); ring: 2px solid #c7d2fe; }
+      button {
+        width: 100%;
+        padding: 0.85rem;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.15s ease;
+      }
+      button:hover { background: var(--primary-hover); }
+      .error-msg {
+        display: none;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        color: #991b1b;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .footer-note {
+        margin-top: 1.5rem;
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-card">
+      <span class="brand-badge">Embodied Llama</span>
+      <h1>Admin Portal</h1>
+      <p>Enter the administrator password to access content management.</p>
+
+      <div id="errorBox" class="error-msg"></div>
+
+      <form id="loginForm">
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required autofocus placeholder="••••••••••••" />
+        </div>
+        <button type="submit" id="submitBtn">Sign In</button>
+      </form>
+
+      <div class="footer-note">
+        Protected by Cloudflare Edge Security
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById('loginForm') as HTMLFormElement;
+      const errorBox = document.getElementById('errorBox') as HTMLDivElement;
+      const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
+
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorBox.style.display = 'none';
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Verifying...';
+
+        const formData = new FormData(form);
+        try {
+          const res = await fetch('/api/auth/login', {
+            method: 'POST',
+            body: formData,
+          });
+
+          const data = await res.json();
+          if (res.ok && data.success) {
+            window.location.href = '/admin';
+          } else {
+            errorBox.innerText = data.error || 'Authentication failed.';
+            errorBox.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'Sign In';
+          }
+        } catch (err) {
+          errorBox.innerText = 'Network error. Please try again.';
+          errorBox.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'Sign In';
+        }
+      });
+    </script>
+  </body>
+</html>
+

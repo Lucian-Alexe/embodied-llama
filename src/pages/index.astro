@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const seoSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Embodied Llama',
+  url: 'https://embodiedllama.pages.dev',
+  description: 'Embodied Llama official website built with Astro and hosted on Cloudflare Pages.',
+};
+---
+
+<Layout
+  title="Home"
+  description="Welcome to Embodied Llama - official website powered by Astro and Cloudflare."
+  schema={seoSchema}
+>
+  <section class="hero-section">
+    <div class="badge">Astro 5 + Cloudflare Ready</div>
+    <h1>Welcome to Embodied Llama</h1>
+    <p class="subtitle">
+      Environment successfully initialized and tested. Ready to implement mockups and custom styles.
+    </p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>⚡ Astro 5 Core</h3>
+        <p>Zero-JavaScript baseline for maximum performance, minimal bundle size, and lightning load speeds.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔍 Production SEO</h3>
+        <p>Configured with OpenGraph, Twitter Cards, robots.txt, dynamic canonical tags, and auto-generated XML sitemaps.</p>
+      </div>
+      <div class="feature-card">
+        <h3>☁️ Cloudflare Pages Ready</h3>
+        <p>Pre-configured for frictionless static deployment and ultra-fast edge delivery across global CDN points of presence.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-section {
+    text-align: center;
+    padding: 3rem 0;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4338ca;
+    background: #e0e7ff;
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.025em;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: #64748b;
+    max-width: 650px;
+    margin: 0 auto 3rem auto;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    text-align: left;
+    margin-top: 2rem;
+  }
+
+  .feature-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .feature-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #0f172a;
+  }
+
+  .feature-card p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+</style>
+
