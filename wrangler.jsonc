@@ -3,5 +3,12 @@
   "name": "embodied-llama-web",
   "compatibility_date": "2024-09-23",
   "compatibility_flags": ["nodejs_compat"],
-  "pages_build_output_dir": "dist"
+  "pages_build_output_dir": "dist",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "embodied_llama_db",
+      "database_id": "a7f79313-fe40-4b0e-9905-c0bf3fd01e79"
+    }
+  ]
 }
