@@ -1,11 +1,9 @@
 ---
 import '@fontsource/isometra';
-import '@fontsource/cormorant-garamond';
-import '@fontsource/cormorant-garamond/400.css';
-import '@fontsource/cormorant-garamond/500.css';
-import '@fontsource/cormorant-garamond/600.css';
-import '@fontsource/cormorant-garamond/700.css';
-import '@fontsource/cormorant-garamond/400-italic.css';
+import '@fontsource/plus-jakarta-sans/400.css';
+import '@fontsource/plus-jakarta-sans/500.css';
+import '@fontsource/plus-jakarta-sans/600.css';
+import '@fontsource/plus-jakarta-sans/700.css';
 
 import BaseHead from '../components/BaseHead.astro';
 import ContactModal from '../components/ContactModal.astro';
@@ -43,15 +41,15 @@ const { title, description, image, schema } = Astro.props;
 
     <!-- Footer with Large Llama Illustration and Smooth Glow -->
     <footer class="site-footer" id="siteFooter">
-      <div class="footer-radial-glow"></div>
+      <div class="footer-radial-glow" aria-hidden="true"></div>
       <div class="footer-content">
         <!-- Big Llama Illustration as in PDF -->
         <img
           src="/assets/final-illustration.svg"
           alt="Embodied Llama Emblem"
           class="footer-big-illustration"
-          width="260"
-          height="234"
+          width="380"
+          height="342"
           loading="lazy"
         />
         
@@ -86,7 +84,7 @@ const { title, description, image, schema } = Astro.props;
     --brand-gold: #B68E54;
     --brand-gold-hover: #9D7742;
     --font-heading: 'Isometra', serif;
-    --font-body: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 
   *, *::before, *::after {
@@ -186,18 +184,36 @@ const { title, description, image, schema } = Astro.props;
     text-align: center;
   }
 
+  /* Ambient circular gradient that glows and breathes continuously on a loop */
   .footer-radial-glow {
     position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 45%, #2a313d 0%, #1e222a 70%);
-    opacity: 0.85;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 780px;
+    height: 780px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(182, 142, 84, 0.22) 0%, rgba(45, 54, 70, 0.42) 45%, rgba(30, 34, 42, 0) 70%);
     pointer-events: none;
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    animation: footerLoopGlow 7s ease-in-out infinite alternate;
   }
 
-  .site-footer:hover .footer-radial-glow {
-    opacity: 1;
-    background: radial-gradient(circle at 50% 40%, #323b49 0%, #20252e 65%, #181c23 100%);
+  @keyframes footerLoopGlow {
+    0% {
+      opacity: 0.35;
+      transform: translate(-50%, -50%) scale(0.92);
+      filter: blur(25px);
+    }
+    50% {
+      opacity: 0.85;
+      transform: translate(-50%, -50%) scale(1.10);
+      filter: blur(35px);
+    }
+    100% {
+      opacity: 0.45;
+      transform: translate(-50%, -50%) scale(0.96);
+      filter: blur(28px);
+    }
   }
 
   .footer-content {

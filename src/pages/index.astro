@@ -46,7 +46,7 @@ const seoSchema = {
   description="Embodied Llama — Somatic Coaching to step out of survival mode, regulate your nervous system, and reconnect with the wisdom of your body."
   schema={seoSchema}
 >
-  <!-- ==================== TOP BRAND HEADER (Below Menu, Centered as in PDF) ==================== -->
+  <!-- ==================== TOP BRAND HEADER (Centered directly above Hero as in PDF) ==================== -->
   <header class="page-top-brand">
     <div class="container text-center">
       <img
@@ -58,7 +58,7 @@ const seoSchema = {
         loading="eager"
       />
       <h1 class="brand-top-title">Embodied LLama</h1>
-      <p class="brand-top-subtitle">SOMATIC COACHING</p>
+      <p class="brand-top-subtitle">S O M A T I C &nbsp; C O A C H I N G</p>
     </div>
   </header>
 
@@ -85,7 +85,7 @@ const seoSchema = {
 
         <div class="hero-columns">
           <div class="hero-col">
-            <p>
+            <p class="hero-lead">
               <strong>Real transformation happens when we fully inhabit our physical experience.</strong> When we bring loving attention to the body, we unlock its natural capacity to heal and expand.
             </p>
             <p>
@@ -116,8 +116,8 @@ const seoSchema = {
             src="/assets/logo.svg"
             alt="Embodied Llama Emblem"
             class="callout-llama-icon"
-            width="64"
-            height="72"
+            width="68"
+            height="76"
             loading="lazy"
           />
         </div>
@@ -259,9 +259,9 @@ const seoSchema = {
         <p>My real passion is guiding people to step out of survival mode and reconnect with their true selves.</p>
       </div>
 
-      <!-- Clean 5-Photo Row with Subtle Hover Zoom (No Parallax, as in PDF) -->
+      <!-- Artfully Staggered 5-Photo Row as in PDF -->
       <div class="about-photos-grid">
-        <div class="about-photo-card">
+        <div class="about-photo-card photo-stagger-1">
           <img
             src="/assets/photos/about-1.jpeg"
             alt="Beach sunset yoga pose — Somatic coaching practice"
@@ -269,7 +269,7 @@ const seoSchema = {
             loading="lazy"
           />
         </div>
-        <div class="about-photo-card">
+        <div class="about-photo-card photo-stagger-2">
           <img
             src="/assets/photos/about-2.jpeg"
             alt="Warm vibrant connection in nature — Somatic coaching"
@@ -277,7 +277,7 @@ const seoSchema = {
             loading="lazy"
           />
         </div>
-        <div class="about-photo-card">
+        <div class="about-photo-card photo-stagger-3">
           <img
             src="/assets/photos/about-3.jpeg"
             alt="Bridge in lush greenery — Grounded somatic journey"
@@ -285,7 +285,7 @@ const seoSchema = {
             loading="lazy"
           />
         </div>
-        <div class="about-photo-card">
+        <div class="about-photo-card photo-stagger-4">
           <img
             src="/assets/photos/about-4.jpeg"
             alt="Authentic joy and companion connection — Somatic coach"
@@ -293,7 +293,7 @@ const seoSchema = {
             loading="lazy"
           />
         </div>
-        <div class="about-photo-card">
+        <div class="about-photo-card photo-stagger-5">
           <img
             src="/assets/photos/about-5.jpeg"
             alt="Joyful connection at local market — Embodied living"
@@ -321,8 +321,8 @@ const seoSchema = {
           <p>
             Everything shifted when I found body-centered practices. I realized that transformation only happens when the body is included in the process, and this resonated so much more with my approach to healing. Movement has always been my personal medicine, so bringing body awareness into my work felt completely natural.
           </p>
-          <p>
-            As a somatic coach, my greatest joy is guiding people back to their most authentic selves. I know this path deeply because I’ve walked my own journey of learning to slow down, listen to my body’s wisdom, and reconnect with my heart. I’m so honored to share this work with you!
+          <p class="future-closing">
+            <strong>As a somatic coach, my greatest joy is guiding people back to their most authentic selves.</strong> I know this path deeply because I’ve walked my own journey of learning to slow down, listen to my body’s wisdom, and reconnect with my heart. I’m so honored to share this work with you!
           </p>
         </div>
 
@@ -367,24 +367,25 @@ const seoSchema = {
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 2rem;
   }
   .text-center { text-align: center; }
-  .mt-3 { margin-top: 2.5rem; }
+  .mt-3 { margin-top: 3rem; }
 
-  /* Reusable Flat Button (No Glow) */
+  /* Reusable Flat Button (No Glow, Clean Authentic Warm Gold Pill) */
   .btn-primary {
     display: inline-block;
-    padding: 0.85rem 2.5rem;
+    padding: 0.95rem 2.85rem;
     background: #b68e54;
     color: #ffffff;
     border: none;
     border-radius: 9999px;
     font-family: var(--font-body);
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     font-weight: 600;
+    letter-spacing: 0.02em;
     cursor: pointer;
-    box-shadow: none; /* No glow behind buttons */
+    box-shadow: none; /* No glow */
     text-decoration: none;
     transition: background 0.2s ease, transform 0.15s ease;
   }
@@ -396,26 +397,26 @@ const seoSchema = {
 
   .section-title {
     font-family: var(--font-heading);
-    font-size: 2.85rem;
+    font-size: 3rem;
     font-weight: 600;
     color: #b68e54;
     letter-spacing: -0.01em;
-    margin-bottom: 2rem;
+    margin-bottom: 2.25rem;
   }
 
   /* ==================== TOP BRAND HEADER ==================== */
   .page-top-brand {
-    padding: 2rem 0 1.5rem 0;
+    padding: 2.5rem 0 2rem 0;
   }
   .brand-top-logo {
     display: block;
-    margin: 0 auto 0.75rem auto;
-    width: 110px;
+    margin: 0 auto 0.85rem auto;
+    width: 115px;
     height: auto;
   }
   .brand-top-title {
     font-family: var(--font-heading);
-    font-size: 3.25rem;
+    font-size: 3.4rem;
     color: #b68e54;
     font-weight: 700;
     line-height: 1.1;
@@ -423,25 +424,26 @@ const seoSchema = {
   }
   .brand-top-subtitle {
     font-family: var(--font-body);
-    font-size: 0.95rem;
-    letter-spacing: 0.28em;
+    font-size: 1.05rem;
+    letter-spacing: 0.32em;
     font-weight: 600;
-    color: #b68e54;
+    color: #2E3138;
     text-transform: uppercase;
-    margin-top: 0.35rem;
+    margin-top: 0.5rem;
   }
 
   /* ==================== HERO SECTION ==================== */
   .hero-section {
-    padding: 2.5rem 0 4rem 0;
+    padding: 2.5rem 0 4.5rem 0;
+    background: transparent;
   }
 
   .hero-container {
     display: grid;
-    grid-template-columns: 360px 1fr;
-    gap: 3.5rem;
+    grid-template-columns: 390px 1fr;
+    gap: 4rem;
     align-items: center;
-    margin-bottom: 3.5rem;
+    margin-bottom: 4rem;
   }
 
   .hero-media {
@@ -451,10 +453,10 @@ const seoSchema = {
 
   .arch-frame {
     width: 100%;
-    max-width: 360px;
+    max-width: 390px;
     aspect-ratio: 3 / 4;
-    border-top-left-radius: 180px;
-    border-top-right-radius: 180px;
+    border-top-left-radius: 195px;
+    border-top-right-radius: 195px;
     border-bottom-left-radius: 1.25rem;
     border-bottom-right-radius: 1.25rem;
     overflow: hidden;
@@ -472,7 +474,7 @@ const seoSchema = {
 
   .hero-title {
     font-family: var(--font-heading);
-    font-size: 3.15rem;
+    font-size: 3.35rem;
     line-height: 1.15;
     font-weight: 600;
     color: #2E3138;
@@ -483,36 +485,38 @@ const seoSchema = {
   .hero-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
+    gap: 2.75rem;
   }
 
   .hero-col p {
-    font-size: 1.05rem;
-    line-height: 1.7;
+    font-size: 1.08rem;
+    line-height: 1.75;
     color: #475569;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.35rem;
   }
   .hero-col p:last-of-type {
     margin-bottom: 0;
   }
   .hero-col strong {
     color: #2E3138;
+    font-weight: 600;
   }
   .hero-col-action {
-    margin-top: 2rem;
+    margin-top: 2.25rem;
   }
 
   /* Llama Wisdom Callout Card with Logo on Left */
   .callout-card {
-    background: rgba(235, 226, 214, 0.45);
+    background: #FFFFFF;
     border: 1px solid #EBE2D6;
     border-radius: 1.25rem;
-    padding: 2rem 2.5rem;
+    padding: 2.25rem 2.75rem;
     display: flex;
     align-items: center;
-    gap: 2.25rem;
-    max-width: 960px;
+    gap: 2.5rem;
+    max-width: 980px;
     margin: 0 auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
   }
 
   .callout-icon-wrap {
@@ -520,70 +524,70 @@ const seoSchema = {
   }
 
   .callout-llama-icon {
-    width: 64px;
+    width: 68px;
     height: auto;
     display: block;
   }
 
   .callout-inner p {
-    font-size: 0.98rem;
+    font-size: 1.05rem;
     line-height: 1.75;
     color: #475569;
-    font-style: normal;
   }
 
   /* ==================== HOW THE MAGIC HAPPENS ==================== */
   .method-section {
-    padding: 5rem 0;
-    background: #FAF7F2;
+    padding: 5.5rem 0;
+    background: #EBE2D6;
   }
 
   .method-intro {
-    max-width: 860px;
-    margin: 0 auto 3.5rem auto;
+    max-width: 920px;
+    margin: 0 auto 3.75rem auto;
   }
   .method-intro p {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: #475569;
-    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    line-height: 1.85;
+    color: #384152;
+    margin-bottom: 1.65rem;
   }
   .method-intro strong {
-    color: #2E3138;
+    color: #1F242F;
+    font-weight: 600;
   }
 
   /* Golden Highlight Banner containing 4 white cards */
   .golden-banner {
-    background: #A07C4A;
+    background: #B68E54;
     color: #ffffff;
-    border-radius: 1.5rem;
-    padding: 3.5rem 2.5rem 3rem 2.5rem;
+    border-radius: 1.75rem;
+    padding: 3.75rem 2.75rem 3.25rem 2.75rem;
     box-shadow: none;
   }
 
   .banner-stars {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     letter-spacing: 0.4em;
     color: #ffffff;
-    opacity: 0.9;
-    margin-bottom: 1.25rem;
+    opacity: 0.95;
+    margin-bottom: 1.5rem;
   }
 
   .banner-heading {
     font-family: var(--font-body);
     font-size: 1.45rem;
     font-weight: 500;
-    line-height: 1.5;
-    max-width: 820px;
-    margin: 0 auto 1.25rem auto;
+    line-height: 1.55;
+    max-width: 860px;
+    margin: 0 auto 1.35rem auto;
   }
 
   .banner-sub {
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 1.05rem;
     letter-spacing: 0.08em;
     font-weight: 600;
-    margin-bottom: 2.75rem;
+    margin-bottom: 3rem;
     opacity: 0.95;
   }
 
@@ -597,7 +601,7 @@ const seoSchema = {
   .pillar-card {
     background: #FFFFFF;
     border-radius: 1.25rem;
-    padding: 2.25rem 1.25rem 2rem 1.25rem;
+    padding: 2.35rem 1.35rem 2.15rem 1.35rem;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -622,79 +626,88 @@ const seoSchema = {
 
   .pillar-title {
     font-family: var(--font-heading);
-    font-size: 1.15rem;
+    font-size: 1.22rem;
     font-weight: 600;
     color: #B68E54;
-    margin-bottom: 0.85rem;
+    margin-bottom: 0.95rem;
     line-height: 1.25;
-    min-height: 3rem;
+    min-height: 3.1rem;
   }
 
   .pillar-desc {
-    font-size: 0.92rem;
-    color: #64748B;
-    line-height: 1.55;
+    font-size: 0.98rem;
+    color: #556275;
+    line-height: 1.6;
   }
 
   /* ==================== ABOUT ME ==================== */
   .about-section {
-    padding: 5rem 0;
+    padding: 5.5rem 0;
+    background: #F9F8F6;
   }
 
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 3.5rem;
+    gap: 4.5rem;
+    margin-bottom: 4rem;
     text-align: left;
   }
 
   .about-item {
-    margin-bottom: 2.25rem;
+    margin-bottom: 2.35rem;
     border-left: 2px solid #B68E54;
-    padding-left: 1.25rem;
+    padding-left: 1.35rem;
   }
   .about-item h3 {
     font-family: var(--font-heading);
     font-size: 1.35rem;
     font-weight: 600;
     color: #2E3138;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.4rem;
   }
   .about-item p {
-    font-size: 1.05rem;
-    line-height: 1.65;
+    font-size: 1.08rem;
+    line-height: 1.7;
     color: #475569;
   }
 
   .passion-box {
     text-align: center;
-    max-width: 820px;
-    margin: 0 auto 3.5rem auto;
+    max-width: 860px;
+    margin: 0 auto 4rem auto;
   }
   .passion-box p {
     font-family: var(--font-heading);
-    font-size: 1.75rem;
+    font-size: 1.85rem;
     font-weight: 500;
     color: #2E3138;
     line-height: 1.4;
   }
 
-  /* Clean 5-Photo Grid with Subtle Hover Zoom */
+  /* Clean Staggered 5-Photo Grid with Subtle Hover Zoom */
   .about-photos-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 1.25rem;
+    gap: 1.35rem;
     max-width: 1200px;
     margin: 0 auto;
+    align-items: start;
   }
 
   .about-photo-card {
-    aspect-ratio: 3 / 4;
     border-radius: 1.25rem;
     overflow: hidden;
     background: #EBE2D6;
+    aspect-ratio: 3 / 4;
+    transition: transform 0.3s ease;
   }
+
+  .photo-stagger-1 { margin-top: 0; }
+  .photo-stagger-2 { margin-top: 1.75rem; }
+  .photo-stagger-3 { margin-top: 0.5rem; aspect-ratio: 3 / 4.2; }
+  .photo-stagger-4 { margin-top: 1.75rem; }
+  .photo-stagger-5 { margin-top: 0.25rem; }
 
   .about-photo-img {
     width: 100%;
@@ -704,28 +717,28 @@ const seoSchema = {
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .about-photo-card:hover .about-photo-img {
-    transform: scale(1.05);
+    transform: scale(1.04);
   }
 
   /* ==================== FUTURE SECTION ==================== */
   .future-section {
-    padding: 6rem 0;
+    padding: 6.5rem 0;
     background: #FAF7F2;
     text-align: center;
   }
 
   .future-content {
-    max-width: 820px;
+    max-width: 860px;
     margin: 0 auto;
   }
 
   .future-title {
     font-family: var(--font-heading);
-    font-size: 3.15rem;
+    font-size: 3.35rem;
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: -0.01em;
-    margin-bottom: 2.25rem;
+    margin-bottom: 2.5rem;
   }
   .future-title-gold {
     color: #b68e54;
@@ -735,23 +748,27 @@ const seoSchema = {
   }
 
   .future-narrative p {
-    font-size: 1.15rem;
-    line-height: 1.8;
+    font-size: 1.18rem;
+    line-height: 1.85;
     color: #475569;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.65rem;
+  }
+  .future-closing {
+    color: #2E3138 !important;
   }
 
   .future-actions {
-    margin-top: 2.75rem;
+    margin-top: 3rem;
   }
 
   /* ==================== LATEST ARTICLES ==================== */
   .articles-section {
-    padding: 5rem 0 6rem 0;
+    padding: 5.5rem 0 6.5rem 0;
+    background: #FFFFFF;
   }
 
   .articles-list {
-    max-width: 780px;
+    max-width: 820px;
     margin: 0 auto;
     border-top: 1px solid #EBE2D6;
   }
@@ -760,7 +777,7 @@ const seoSchema = {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    padding: 1.25rem 0.5rem;
+    padding: 1.35rem 0.75rem;
     border-bottom: 1px solid #EBE2D6;
     text-decoration: none;
     color: #2E3138;
@@ -769,13 +786,14 @@ const seoSchema = {
 
   .article-row:hover {
     color: #b68e54;
-    padding-left: 0.75rem;
+    padding-left: 1.15rem;
   }
 
   .article-date {
     font-size: 1.05rem;
     color: #64748B;
     font-family: var(--font-body);
+    min-width: 110px;
   }
 
   .article-divider {
@@ -783,7 +801,7 @@ const seoSchema = {
   }
 
   .article-title {
-    font-size: 1.15rem;
+    font-size: 1.18rem;
     font-weight: 500;
     flex: 1;
     font-family: var(--font-body);
@@ -813,6 +831,9 @@ const seoSchema = {
     .hero-media {
       margin-bottom: 1.5rem;
     }
+    .photo-stagger-1, .photo-stagger-2, .photo-stagger-3, .photo-stagger-4, .photo-stagger-5 {
+      margin-top: 0;
+    }
   }
 
   @media (max-width: 768px) {
@@ -831,10 +852,10 @@ const seoSchema = {
     .callout-card {
       flex-direction: column;
       text-align: center;
-      padding: 1.5rem;
+      padding: 1.75rem;
     }
     .hero-title, .brand-top-title, .future-title {
-      font-size: 2.35rem;
+      font-size: 2.45rem;
     }
   }
 </style>
