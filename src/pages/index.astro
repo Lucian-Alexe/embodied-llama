@@ -472,8 +472,9 @@ const seoSchema = {
         </div>
       </div>
 
-      <!-- Part 2: Slider Navigation Controls (Aligned) -->
-      <div class="slider-controls-bar">
+      <!-- Part 2: Header with "Book time with me" Title and Slider Navigation Controls -->
+      <div class="offerings-intro-bar">
+        <h3 class="offerings-section-title">Book time with me</h3>
         <div class="slider-controls" aria-label="Offerings slider controls">
           <button
             type="button"
@@ -522,49 +523,63 @@ const seoSchema = {
           </div>
 
           <div class="pricing-card-content-col">
-            <h3 class="pricing-card-title">Somatic Discovery and Mapping Session</h3>
-            <div class="pricing-tags-row">
-              <span class="pricing-pill-badge">1 session × 75 min</span>
+            <div class="pricing-card-header-mobile-wrap">
+              <h3 class="pricing-card-title">Somatic Discovery and Mapping Session</h3>
+              <div class="pricing-tags-row">
+                <span class="pricing-pill-badge">1 session × 75 min</span>
+              </div>
             </div>
             <p class="pricing-card-lead">
               Orienting to your nervous system's current state, exploring where you hold tension, and discovering gentle ways to move and breathe through overload.
             </p>
-            <p class="pricing-card-note">
-              Note: This single session serves as the gentle foundation for all follow-up containers.
-            </p>
-            <ul class="pricing-check-list">
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>In-depth 1:1 intake mapping your body's stress, trauma, and burnout patterns.</span>
-              </li>
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>Guided practices to safely reconnect with your body's subtle physical sensations at your own pace.</span>
-              </li>
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>Learning simple grounding practices you can weave into your daily rhythm.</span>
-              </li>
-            </ul>
+            <details class="pricing-expand-details" open>
+              <summary class="pricing-expand-toggle">
+                <span class="toggle-text">Find out more</span>
+                <svg class="pricing-toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </summary>
+              <div class="pricing-expand-body">
+                <p class="pricing-card-note">
+                  Note: This single session serves as the gentle foundation for all follow-up containers.
+                </p>
+                <ul class="pricing-check-list">
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>In-depth 1:1 intake mapping your body's stress, trauma, and burnout patterns.</span>
+                  </li>
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>Guided practices to safely reconnect with your body's subtle physical sensations at your own pace.</span>
+                  </li>
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>Learning simple grounding practices you can weave into your daily rhythm.</span>
+                  </li>
+                </ul>
+              </div>
+            </details>
           </div>
 
           <div class="pricing-card-action-col">
-            <div class="pricing-price-val">$144 USD</div>
+            <div class="pricing-price-group">
+              <div class="pricing-price-val">$144 USD</div>
+            </div>
             <a href="https://zcal.com" target="_blank" rel="noopener noreferrer" class="btn-pill-ochre pricing-book-btn">
               <span>Book</span>
               <span class="btn-arrow" aria-hidden="true">↗</span>
@@ -588,57 +603,71 @@ const seoSchema = {
           </div>
 
           <div class="pricing-card-content-col">
-            <h3 class="pricing-card-title">The Grounding & Stability Foundation</h3>
-            <div class="pricing-tags-row">
-              <span class="pricing-pill-badge">1 session × 75 min</span>
-              <span class="pricing-pill-badge">3 sessions × 60 min</span>
+            <div class="pricing-card-header-mobile-wrap">
+              <h3 class="pricing-card-title">The Grounding & Stability Foundation</h3>
+              <div class="pricing-tags-row">
+                <span class="pricing-pill-badge">1 session × 75 min</span>
+                <span class="pricing-pill-badge">3 sessions × 60 min</span>
+              </div>
             </div>
             <p class="pricing-card-lead">
               Creating a stable foundation through grounding techniques, soothing chronic stress, and nurturing mind-body connection.
             </p>
-            <ul class="pricing-check-list">
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>1 × 75-Minute Comprehensive Somatic Assessment</span>
-              </li>
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>3 × 60-Minute 1:1 Follow-Up Sessions.</span>
-              </li>
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>Fostering a deeper mind-body connection and learning to listen to physical cues, cultivating gentle awareness of emotions as they arise in the body without judgment, building practical grounding techniques to soothe stress and restore baseline regulation.</span>
-              </li>
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>Custom grounding tools tailored for your daily routine.</span>
-              </li>
-            </ul>
+            <details class="pricing-expand-details" open>
+              <summary class="pricing-expand-toggle">
+                <span class="toggle-text">Find out more</span>
+                <svg class="pricing-toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </summary>
+              <div class="pricing-expand-body">
+                <ul class="pricing-check-list">
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>1 × 75-Minute Comprehensive Somatic Assessment</span>
+                  </li>
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>3 × 60-Minute 1:1 Follow-Up Sessions.</span>
+                  </li>
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>Fostering a deeper mind-body connection and learning to listen to physical cues, cultivating gentle awareness of emotions as they arise in the body without judgment, building practical grounding techniques to soothe stress and restore baseline regulation.</span>
+                  </li>
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>Custom grounding tools tailored for your daily routine.</span>
+                  </li>
+                </ul>
+              </div>
+            </details>
           </div>
 
           <div class="pricing-card-action-col">
-            <div class="pricing-price-val">$576 USD</div>
-            <span class="pricing-plan-note">*Payment plan: two payments of $288</span>
+            <div class="pricing-price-group">
+              <div class="pricing-price-val">$576 USD</div>
+              <span class="pricing-plan-note">*Payment plan: two payments of $288</span>
+            </div>
             <a href="https://zcal.com" target="_blank" rel="noopener noreferrer" class="btn-pill-ochre pricing-book-btn">
               <span>Book</span>
               <span class="btn-arrow" aria-hidden="true">↗</span>
@@ -662,66 +691,80 @@ const seoSchema = {
           </div>
 
           <div class="pricing-card-content-col">
-            <h3 class="pricing-card-title">The Reconnection & Expansion Journey</h3>
-            <div class="pricing-tags-row">
-              <span class="pricing-pill-badge">1 session × 75 min</span>
-              <span class="pricing-pill-badge">6 sessions × 60 min</span>
+            <div class="pricing-card-header-mobile-wrap">
+              <h3 class="pricing-card-title">The Reconnection & Expansion Journey</h3>
+              <div class="pricing-tags-row">
+                <span class="pricing-pill-badge">1 session × 75 min</span>
+                <span class="pricing-pill-badge">6 sessions × 60 min</span>
+              </div>
             </div>
             <p class="pricing-card-lead">
               Deeper grounding and body exploration. Moving beyond daily survival to cultivating somatic safety, creating space for your emotions, and reconnecting with yourself.
             </p>
-            <ul class="pricing-check-list">
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>1 × 75-Minute Comprehensive Somatic Assessment</span>
-              </li>
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>6 × 60-Minute 1:1 Follow-Up Sessions over 2–3 months.</span>
-              </li>
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>Deep somatic exploration, fostering mind-body connection, meeting emotions with compassion, mindful movement and somatic yoga postures that cultivate body trust, presence, and felt safety, and nervous system grounding practices. Intuitive Tarot guidance for self-exploration.</span>
-              </li>
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>Personalized somatic care plan for everyday support.</span>
-              </li>
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>1:1 check-in call between sessions for ongoing support and real-time integration.</span>
-              </li>
-            </ul>
+            <details class="pricing-expand-details" open>
+              <summary class="pricing-expand-toggle">
+                <span class="toggle-text">Find out more</span>
+                <svg class="pricing-toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </summary>
+              <div class="pricing-expand-body">
+                <ul class="pricing-check-list">
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>1 × 75-Minute Comprehensive Somatic Assessment</span>
+                  </li>
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>6 × 60-Minute 1:1 Follow-Up Sessions over 2–3 months.</span>
+                  </li>
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>Deep somatic exploration, fostering mind-body connection, meeting emotions with compassion, mindful movement and somatic yoga postures that cultivate body trust, presence, and felt safety, and nervous system grounding practices. Intuitive Tarot guidance for self-exploration.</span>
+                  </li>
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>Personalized somatic care plan for everyday support.</span>
+                  </li>
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>1:1 check-in call between sessions for ongoing support and real-time integration.</span>
+                  </li>
+                </ul>
+              </div>
+            </details>
           </div>
 
           <div class="pricing-card-action-col">
-            <div class="pricing-price-val">$888 USD</div>
-            <span class="pricing-plan-note">*Payment plan: three payments of $311</span>
+            <div class="pricing-price-group">
+              <div class="pricing-price-val">$888 USD</div>
+              <span class="pricing-plan-note">*Payment plan: three payments of $311</span>
+            </div>
             <a href="https://zcal.com" target="_blank" rel="noopener noreferrer" class="btn-pill-ochre pricing-book-btn">
               <span>Book</span>
               <span class="btn-arrow" aria-hidden="true">↗</span>
@@ -745,57 +788,71 @@ const seoSchema = {
           </div>
 
           <div class="pricing-card-content-col">
-            <h3 class="pricing-card-title">The Deep Embodiment & Integration Immersion</h3>
-            <div class="pricing-tags-row">
-              <span class="pricing-pill-badge">1 session × 75 min</span>
-              <span class="pricing-pill-badge">11 sessions × 60 min</span>
+            <div class="pricing-card-header-mobile-wrap">
+              <h3 class="pricing-card-title">The Deep Embodiment & Integration Immersion</h3>
+              <div class="pricing-tags-row">
+                <span class="pricing-pill-badge">1 session × 75 min</span>
+                <span class="pricing-pill-badge">11 sessions × 60 min</span>
+              </div>
             </div>
             <p class="pricing-card-lead">
               Restoring inner balance, releasing deep survival habits, cultivating sustained body trust, navigating major life transitions, reconnecting with your purpose.
             </p>
-            <ul class="pricing-check-list">
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>1 × 75-Minute Comprehensive Somatic Assessment</span>
-              </li>
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>11 × 60-Minute 1:1 Follow-Up Sessions spread over 4 to 6 months.</span>
-              </li>
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>Deep somatic integration, trauma-informed, somatic yoga and intuitive movement to help gently unwind tension and discharge stored stress. Embodied boundary practices to help you sense and communicate your limits and needs with clarity and self-trust. Honoring your emotions as wise signals and reconnecting with intuition. Tarot guidance as a reflective mirror to track your growth, and illuminate new ways of connecting with yourself and the world.</span>
-              </li>
-              <li>
-                <span class="check-bullet" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
-                    <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span>Two 1:1 check-in calls between sessions for ongoing support and real-time integration.</span>
-              </li>
-            </ul>
+            <details class="pricing-expand-details" open>
+              <summary class="pricing-expand-toggle">
+                <span class="toggle-text">Find out more</span>
+                <svg class="pricing-toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </summary>
+              <div class="pricing-expand-body">
+                <ul class="pricing-check-list">
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>1 × 75-Minute Comprehensive Somatic Assessment</span>
+                  </li>
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>11 × 60-Minute 1:1 Follow-Up Sessions spread over 4 to 6 months.</span>
+                  </li>
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>Deep somatic integration, trauma-informed, somatic yoga and intuitive movement to help gently unwind tension and discharge stored stress. Embodied boundary practices to help you sense and communicate your limits and needs with clarity and self-trust. Honoring your emotions as wise signals and reconnecting with intuition. Tarot guidance as a reflective mirror to track your growth, and illuminate new ways of connecting with yourself and the world.</span>
+                  </li>
+                  <li>
+                    <span class="check-bullet" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D9D7D3" stroke-width="1.6" />
+                        <polyline points="8 12 11 15 16 9" stroke="#B68E54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <span>Two 1:1 check-in calls between sessions for ongoing support and real-time integration.</span>
+                  </li>
+                </ul>
+              </div>
+            </details>
           </div>
 
           <div class="pricing-card-action-col">
-            <div class="pricing-price-val">$1,111 USD</div>
-            <span class="pricing-plan-note">*Payment plan: four payments of $295</span>
+            <div class="pricing-price-group">
+              <div class="pricing-price-val">$1,111 USD</div>
+              <span class="pricing-plan-note">*Payment plan: four payments of $295</span>
+            </div>
             <a href="https://zcal.com" target="_blank" rel="noopener noreferrer" class="btn-pill-ochre pricing-book-btn">
               <span>Book</span>
               <span class="btn-arrow" aria-hidden="true">↗</span>
@@ -822,11 +879,13 @@ const seoSchema = {
             </div>
 
             <div class="tarot-content-col">
-              <h3 class="tarot-card-title">
-                Intuitive Tarot guidance for self-connection, and returning home to yourself.
-              </h3>
-              <div class="pricing-tags-row">
-                <span class="pricing-pill-badge">1 session × 60 min</span>
+              <div class="tarot-header-mobile-wrap">
+                <h3 class="tarot-card-title">
+                  Intuitive Tarot guidance for self-connection, and returning home to yourself.
+                </h3>
+                <div class="pricing-tags-row">
+                  <span class="pricing-pill-badge">1 session × 60 min</span>
+                </div>
               </div>
               <p class="tarot-card-desc">
                 A 1:1 session that combines gentle card reflection to help you navigate life transitions, reconnect with emotions and tune into your wisdom to bring clarity to your next steps.
@@ -834,7 +893,9 @@ const seoSchema = {
             </div>
 
             <div class="tarot-action-col">
-              <div class="pricing-price-val">$111 USD</div>
+              <div class="pricing-price-group">
+                <div class="pricing-price-val">$111 USD</div>
+              </div>
               <a href="https://zcal.com" target="_blank" rel="noopener noreferrer" class="btn-pill-ochre pricing-book-btn">
                 <span>Book</span>
                 <span class="btn-arrow" aria-hidden="true">↗</span>
@@ -958,8 +1019,28 @@ const seoSchema = {
       });
     }
 
+    function initOfferingsDetails() {
+      const isMobile = window.innerWidth <= 768;
+      document.querySelectorAll('.pricing-expand-details').forEach((details) => {
+        if (isMobile) {
+          details.removeAttribute('open');
+        } else {
+          details.setAttribute('open', '');
+        }
+      });
+    }
+
     setupPricingSlider();
-    document.addEventListener('astro:page-load', setupPricingSlider);
+    initOfferingsDetails();
+    document.addEventListener('astro:page-load', () => {
+      setupPricingSlider();
+      initOfferingsDetails();
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        document.querySelectorAll('.pricing-expand-details').forEach((el) => el.setAttribute('open', ''));
+      }
+    });
   </script>
 </Layout>
 
@@ -1003,6 +1084,16 @@ const seoSchema = {
     display: flex;
     justify-content: center;
     margin-bottom: 1.75rem;
+    animation: heroLlamaLevitate 7s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    contain: layout paint style;
   }
 
   .llama-canvas {
@@ -1010,6 +1101,9 @@ const seoSchema = {
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
   .hero-llama-mandala {
@@ -1017,20 +1111,21 @@ const seoSchema = {
     width: 480px;
     max-width: 88vw;
     height: auto;
-    animation: heroLlamaLevitate 6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-    will-change: transform;
-    transform: translateZ(0);
+    transform: translate3d(0, 0, 0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     filter: none;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
   }
 
   @keyframes heroLlamaLevitate {
     0%, 100% {
-      transform: translateY(0);
+      transform: translate3d(0, 0, 0);
     }
     50% {
-      transform: translateY(-20px);
+      transform: translate3d(0, -42px, 0);
     }
   }
 
@@ -1615,44 +1710,23 @@ const seoSchema = {
     object-fit: cover;
   }
 
-  /* Part 2: Slider Navigation Controls (Aligned) */
-  .slider-controls-bar {
+  /* Part 2: Offerings Header Bar with 'Book time with me' Title and Controls */
+  .offerings-intro-bar {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
-
-  .slider-controls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .slider-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-primary);
-    font-size: 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: none;
-    transition: background-color 0.2s, color 0.2s;
-  }
-
-  /* Part 2: Slider Navigation Controls (Aligned & SVG Chevrons) */
-  .slider-controls-bar {
-    display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     max-width: 1200px;
-    margin: 2rem auto 1.5rem;
+    margin: 2.5rem auto 1.75rem;
     padding: 0 0.5rem;
+  }
+
+  .offerings-section-title {
+    font-family: var(--font-body);
+    font-size: 2.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin: 0;
   }
 
   .slider-controls {
@@ -1823,12 +1897,67 @@ const seoSchema = {
     margin-bottom: 1.25rem;
   }
 
+  /* Details Toggle Styling */
+  .pricing-expand-details {
+    width: 100%;
+  }
+
+  .pricing-expand-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--brand-ochre);
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    padding: 0.35rem 0;
+    transition: color 0.2s ease;
+  }
+
+  .pricing-expand-toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .pricing-expand-toggle:hover {
+    color: #926E38;
+  }
+
+  .pricing-toggle-chevron {
+    transition: transform 0.25s ease;
+  }
+
+  .pricing-expand-details[open] .pricing-toggle-chevron {
+    transform: rotate(180deg);
+  }
+
+  .pricing-expand-body {
+    padding-top: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  /* Desktop View: toggle button hidden, full checklist open */
+  @media (min-width: 769px) {
+    .pricing-expand-toggle {
+      display: none !important;
+    }
+    .pricing-expand-details {
+      display: block !important;
+    }
+    .pricing-expand-body {
+      padding-top: 0;
+    }
+  }
+
   .pricing-card-note {
     font-size: 0.95rem;
     line-height: 1.6;
     color: var(--text-secondary);
     font-style: italic;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .pricing-check-list {
@@ -1861,6 +1990,13 @@ const seoSchema = {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 100%;
+  }
+
+  .pricing-price-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
   }
 
@@ -2107,9 +2243,26 @@ const seoSchema = {
     }
   }
 
+  @keyframes heroLlamaLevitateMobile {
+    0%, 100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -28px, 0);
+    }
+  }
+
   @media (max-width: 768px) {
+    .hero-wrapper {
+      overflow-x: clip;
+    }
+
     .hero-brand-title {
       font-size: 1.6rem;
+    }
+
+    .hero-llama-levitate-wrap {
+      animation-name: heroLlamaLevitateMobile;
     }
 
     .hero-headline,
@@ -2118,6 +2271,29 @@ const seoSchema = {
     .future-title,
     .articles-title {
       font-size: 2.3rem;
+    }
+
+    .hero-story-container {
+      overflow: hidden;
+      border-radius: 28px;
+    }
+
+    .hero-media-col {
+      position: relative;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Hero Flower Decor: Strictly stays inside container on mobile */
+    .hero-flower-decor {
+      position: absolute;
+      top: -30px;
+      right: 0px;
+      width: 240px;
+      height: 240px;
+      max-width: 70vw;
+      opacity: 0.35;
+      pointer-events: none;
     }
 
     .hero-two-columns {
@@ -2140,36 +2316,251 @@ const seoSchema = {
       grid-template-columns: 1fr;
     }
 
-    /* About Me on Mobile: Exactly two single rows, each with 3 images */
-    .about-photos-col {
+    /* About Me on Mobile: ONLY the first 2 photos visible */
+    .about-photos-part1 {
       display: grid !important;
-      grid-template-columns: repeat(3, 1fr) !important;
-      gap: 0.65rem !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 0.85rem !important;
+      margin-top: 1.5rem !important;
+      margin-bottom: 2rem !important;
     }
 
-    .about-photos-stack,
-    .about-photos-side {
+    .about-photos-part1 .about-photos-stack {
       display: contents !important;
-      margin-top: 0 !important;
     }
 
-    .about-photo-card img {
-      height: 130px !important;
+    .about-photos-part1 .card-beach-sunset,
+    .about-photos-part1 .about-photos-side {
+      display: none !important;
+    }
+
+    .about-photos-part2 {
+      display: none !important;
+    }
+
+    .about-photos-part1 .about-photo-card img {
+      height: 180px !important;
       width: 100% !important;
       object-fit: cover !important;
-      border-radius: 12px !important;
+      border-radius: 16px !important;
     }
 
     /* Future Buddha Image on Mobile: Small Margin Underneath */
+    .future-offerings-unified {
+      padding: 3rem 1rem 3.5rem;
+    }
+
+    .future-story-row {
+      margin-bottom: 2.5rem;
+    }
+
     .future-media {
       margin-bottom: 1.25rem;
     }
 
-    .hero-flower-decor {
-      right: -60px;
-      width: 320px;
-      height: 320px;
-      opacity: 0.4;
+    /* Offerings Bar & 'Book time with me' Title on Mobile */
+    .offerings-intro-bar {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+      margin: 1.25rem auto 1rem;
+      text-align: center;
+    }
+
+    .offerings-section-title {
+      font-family: var(--font-body);
+      font-size: 1.45rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      text-align: center;
+      margin: 0;
+    }
+
+    .pricing-slider-viewport {
+      padding: 0.5rem 0.25rem 1.5rem;
+      gap: 1.25rem;
+    }
+
+    /* Mobile Pricing Card: Previewable on mobile screen without scrolling */
+    .pricing-card {
+      display: grid !important;
+      grid-template-columns: 48px 1fr !important;
+      grid-template-areas:
+        "icon header"
+        "lead lead"
+        "action action"
+        "details details";
+      gap: 0.65rem 0.75rem !important;
+      padding: 1.2rem 1.15rem !important;
+      border-radius: 20px !important;
+    }
+
+    .pricing-card-icon-col {
+      grid-area: icon;
+      padding-top: 0;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .pricing-icon-wrap {
+      width: 48px !important;
+      height: 48px !important;
+    }
+
+    .pricing-card-content-col {
+      display: contents !important;
+    }
+
+    .pricing-card-header-mobile-wrap {
+      grid-area: header;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.2rem;
+    }
+
+    .pricing-card-title {
+      font-size: 1.15rem !important;
+      line-height: 1.25 !important;
+      font-weight: 700;
+      margin: 0 !important;
+    }
+
+    .pricing-tags-row {
+      margin-top: 0.15rem !important;
+      margin-bottom: 0 !important;
+      gap: 0.35rem !important;
+    }
+
+    .pricing-pill-badge {
+      padding: 0.18rem 0.55rem !important;
+      font-size: 0.75rem !important;
+    }
+
+    .pricing-card-lead {
+      grid-area: lead;
+      font-size: 0.92rem !important;
+      line-height: 1.45 !important;
+      margin-bottom: 0 !important;
+      color: var(--text-secondary);
+      font-weight: 500 !important;
+    }
+
+    .pricing-card-action-col {
+      grid-area: action;
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      width: 100% !important;
+      margin-top: 0.25rem !important;
+      padding-top: 0.65rem !important;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .pricing-price-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .pricing-price-val {
+      font-size: 1.55rem !important;
+      text-align: left !important;
+      width: auto !important;
+      margin-bottom: 0 !important;
+      line-height: 1.1;
+    }
+
+    .pricing-plan-note {
+      font-size: 0.76rem !important;
+      text-align: left !important;
+      margin-bottom: 0 !important;
+      margin-top: 0.15rem !important;
+    }
+
+    .pricing-book-btn {
+      min-width: 105px !important;
+      padding: 0.5rem 1.15rem !important;
+      font-size: 0.88rem !important;
+    }
+
+    .pricing-expand-details {
+      grid-area: details;
+      width: 100%;
+    }
+
+    .pricing-expand-toggle {
+      display: inline-flex !important;
+      padding: 0.25rem 0;
+    }
+
+    /* Tarot Mobile Card */
+    .tarot-card-wrapper {
+      margin-top: 2rem;
+    }
+
+    .tarot-card-inner {
+      display: grid !important;
+      grid-template-columns: 40px 1fr !important;
+      grid-template-areas:
+        "icon header"
+        "desc desc"
+        "action action";
+      gap: 0.65rem 0.75rem !important;
+      padding: 1.2rem 1.15rem !important;
+      border-radius: 20px !important;
+    }
+
+    .tarot-icon-col {
+      grid-area: icon;
+      padding-top: 0;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .tarot-icon-wrap {
+      width: 38px !important;
+      height: 48px !important;
+    }
+
+    .tarot-content-col {
+      display: contents !important;
+    }
+
+    .tarot-header-mobile-wrap {
+      grid-area: header;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.2rem;
+    }
+
+    .tarot-card-title {
+      font-size: 1.12rem !important;
+      line-height: 1.25 !important;
+      font-weight: 700;
+      margin: 0 !important;
+    }
+
+    .tarot-card-desc {
+      grid-area: desc;
+      font-size: 0.92rem !important;
+      line-height: 1.45 !important;
+      margin-bottom: 0 !important;
+    }
+
+    .tarot-action-col {
+      grid-area: action;
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      width: 100% !important;
+      margin-top: 0.25rem !important;
+      padding-top: 0.65rem !important;
+      border-top: 1px solid var(--border-subtle);
     }
 
     /* Articles on Mobile: All text strictly Left-Aligned */
