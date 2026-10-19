@@ -1,5 +1,7 @@
 ---
 import '@fontsource/isometra';
+import '@fontsource/geist-sans/200.css';
+import '@fontsource/geist-sans/300.css';
 import '@fontsource/geist-sans/400.css';
 import '@fontsource/geist-sans/500.css';
 import '@fontsource/geist-sans/600.css';
@@ -25,7 +27,7 @@ const { title, description, image, schema } = Astro.props;
     <slot name="head" />
   </head>
   <body>
-    <!-- Sticky Glassmorphic Header -->
+    <!-- Clean Pure White Header as requested -->
     <header class="site-header" id="siteHeader">
       <div class="header-inner">
         <!-- Brand logo on mobile (hidden on desktop to match v3 centered links) -->
@@ -33,14 +35,13 @@ const { title, description, image, schema } = Astro.props;
           <span class="mobile-brand-title">Embodied LLama</span>
         </a>
 
-        <!-- Desktop Navigation Bar -->
+        <!-- Desktop Navigation Bar with Scrollspy Underline -->
         <nav class="desktop-nav" aria-label="Main Navigation">
-          <a href="/#" class="nav-item is-active">Home</a>
-          <a href="/#magic" class="nav-item">The Magic</a>
-          <a href="/#about" class="nav-item">About Me</a>
-          <a href="/#articles" class="nav-item">Articles</a>
-          <button type="button" class="nav-item nav-btn-link" data-open-modal>Contact</button>
-          <a href="#offerings" class="btn-pill-dark nav-cta-book">
+          <a href="/#home" class="nav-item is-active" data-section="home">Home</a>
+          <a href="/#magic" class="nav-item" data-section="magic">The Magic</a>
+          <a href="/#about" class="nav-item" data-section="about">About Me</a>
+          <a href="/#articles" class="nav-item" data-section="articles">Articles</a>
+          <a href="https://zcal.com" target="_blank" rel="noopener noreferrer" class="btn-pill-dark nav-cta-book">
             <span>Book</span>
             <span class="btn-arrow" aria-hidden="true">↗</span>
           </a>
@@ -64,14 +65,13 @@ const { title, description, image, schema } = Astro.props;
       <!-- Mobile Slide-Down Navigation Drawer -->
       <div class="mobile-drawer" id="mobileMenuDrawer" aria-hidden="true">
         <nav class="mobile-nav-links" aria-label="Mobile Navigation">
-          <a href="/#" class="mobile-nav-item">Home</a>
+          <a href="/#home" class="mobile-nav-item">Home</a>
           <a href="/#magic" class="mobile-nav-item">The Magic</a>
           <a href="/#about" class="mobile-nav-item">About Me</a>
           <a href="/#articles" class="mobile-nav-item">Articles</a>
-          <button type="button" class="mobile-nav-item mobile-nav-btn" data-open-modal>Contact</button>
           <div class="mobile-drawer-cta">
-            <a href="#offerings" class="btn-pill-dark btn-block mobile-book-btn">
-              <span>Book a Session</span>
+            <a href="https://zcal.com" target="_blank" rel="noopener noreferrer" class="btn-pill-dark btn-block mobile-book-btn">
+              <span>Book</span>
               <span class="btn-arrow" aria-hidden="true">↗</span>
             </a>
           </div>
@@ -92,11 +92,10 @@ const { title, description, image, schema } = Astro.props;
         </div>
 
         <nav class="footer-nav" aria-label="Footer Navigation">
-          <a href="/#">Home</a>
+          <a href="/#home">Home</a>
           <a href="/#magic">The Magic</a>
           <a href="/#about">About Me</a>
           <a href="/#articles">Articles</a>
-          <button type="button" class="footer-link-btn" data-open-modal>Contact</button>
           <a href="/admin">Admin</a>
         </nav>
 
@@ -104,10 +103,10 @@ const { title, description, image, schema } = Astro.props;
       </div>
     </footer>
 
-    <!-- Contact & Let's meet Full-page Modal -->
+    <!-- Contact modal kept for auxiliary routes if needed -->
     <ContactModal />
 
-    <!-- Mobile Menu Interactivity -->
+    <!-- Mobile Menu & ScrollSpy Interactivity -->
     <script>
       function setupHeaderNav() {
         const toggleBtn = document.getElementById('mobileMenuToggle');
@@ -157,8 +156,42 @@ const { title, description, image, schema } = Astro.props;
         });
       }
 
+      function setupScrollSpy() {
+        const sections = ['home', 'magic', 'about', 'articles'];
+        const navLinks = document.querySelectorAll<HTMLAnchorElement>('.desktop-nav .nav-item[data-section]');
+        if (!navLinks.length) return;
+
+        function updateSpy() {
+          const scrollPosition = window.scrollY;
+          const headerOffset = 130;
+          let activeSection = 'home';
+
+          for (const id of sections) {
+            const el = document.getElementById(id);
+            if (el) {
+              const top = el.offsetTop - headerOffset;
+              if (scrollPosition >= top) {
+                activeSection = id;
+              }
+            }
+          }
+
+          navLinks.forEach((link) => {
+            const sec = link.getAttribute('data-section');
+            link.classList.toggle('is-active', sec === activeSection);
+          });
+        }
+
+        window.addEventListener('scroll', updateSpy, { passive: true });
+        updateSpy();
+      }
+
       setupHeaderNav();
-      document.addEventListener('astro:page-load', setupHeaderNav);
+      setupScrollSpy();
+      document.addEventListener('astro:page-load', () => {
+        setupHeaderNav();
+        setupScrollSpy();
+      });
     </script>
   </body>
 </html>
@@ -213,16 +246,15 @@ const { title, description, image, schema } = Astro.props;
     width: 100%;
   }
 
-  /* Universal Sticky Header */
+  /* Universal Sticky Header (Pure White, Flat, No Shadow) */
   .site-header {
     position: sticky;
     top: 0;
     z-index: 100;
     width: 100%;
-    background: rgba(251, 248, 244, 0.92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(217, 215, 211, 0.4);
+    background: #FFFFFF;
+    border-bottom: 1px solid rgba(217, 215, 211, 0.5);
+    box-shadow: none;
     transition: background-color 0.3s ease;
   }
 
@@ -301,6 +333,7 @@ const { title, description, image, schema } = Astro.props;
     text-decoration: none;
     border: none;
     cursor: pointer;
+    box-shadow: none;
     transition: background-color 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
@@ -355,19 +388,17 @@ const { title, description, image, schema } = Astro.props;
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  /* Mobile Drawer Menu */
+  /* Mobile Drawer Menu (Pure White, Flat, No Shadow) */
   .mobile-drawer {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    background: rgba(251, 248, 244, 0.98);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    background: #FFFFFF;
     border-bottom: 1px solid var(--border-subtle);
     padding: 2rem 2rem 2.5rem;
-    box-shadow: 0 16px 32px rgba(46, 49, 56, 0.08);
+    box-shadow: none;
     transform: translateY(-10px);
     opacity: 0;
     pointer-events: none;
