@@ -969,30 +969,12 @@ const seoSchema = {
 
       if (!viewport || !dots.length) return;
 
-      let lastActiveIdx = -1;
-
       function updateActiveIndex(idx: number) {
         dots.forEach((dot, i) => {
           const isActive = i === idx;
           dot.classList.toggle('is-active', isActive);
           dot.setAttribute('aria-selected', String(isActive));
         });
-
-        // Trigger smooth rotate ease on active slide icon
-        if (lastActiveIdx !== idx) {
-          lastActiveIdx = idx;
-          cards?.forEach((card, i) => {
-            const icon = card.querySelector('.pricing-icon');
-            if (icon) {
-              icon.classList.remove('is-rotating');
-              if (i === idx) {
-                // Force reflow so re-triggering works smoothly
-                void (icon as HTMLElement).offsetWidth;
-                icon.classList.add('is-rotating');
-              }
-            }
-          });
-        }
       }
 
       function scrollToCard(targetIdx: number) {
@@ -1884,35 +1866,6 @@ const seoSchema = {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    transition: transform 0.4s ease;
-  }
-
-  .pricing-icon.is-rotating {
-    animation: iconRotateEase 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-
-  @keyframes iconRotateEase {
-    0% {
-      transform: rotate(-35deg) scale(0.92);
-      opacity: 0.85;
-    }
-    70% {
-      transform: rotate(4deg) scale(1.02);
-    }
-    85% {
-      transform: rotate(-1.5deg) scale(0.99);
-    }
-    100% {
-      transform: rotate(0deg) scale(1);
-      opacity: 1;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .pricing-icon.is-rotating {
-      animation: none !important;
-      transform: none !important;
-    }
   }
 
   .pricing-card-content-col {
@@ -2130,30 +2083,21 @@ const seoSchema = {
     position: relative;
     z-index: 1;
     border-radius: 28px;
-    border: 1px solid var(--border-subtle);
+    border: 2px dashed rgba(182, 142, 84, 0.48);
     box-shadow: none;
     overflow: hidden;
-    background: linear-gradient(135deg, #FAF7F2 0%, #F5EDE2 25%, #EDE2D4 50%, #F7EFE6 75%, #FAF7F2 100%);
-    background-size: 300% 300%;
-    animation: tarotMagicShift 12s ease infinite;
+    background-color: #FAF5EB;
+    transition: background-color 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
   }
 
-  @keyframes tarotMagicShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+  .tarot-card:hover {
+    border-color: var(--brand-ochre, #B68E54);
+    background-color: #F2E3CF;
+    transform: translateY(-2px);
   }
 
   .tarot-card-inner {
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: transparent;
     padding: 3.5rem 3.75rem;
     display: grid;
     grid-template-columns: 100px 1fr 200px;
@@ -2415,33 +2359,37 @@ const seoSchema = {
       grid-template-columns: 1fr;
     }
 
-    /* About Me on Mobile: 4 photos total (first 2 after narrative 1, other 2 after narrative 2) */
+    /* About Me on Mobile: 4 photos total (two and two), occupying FULL WIDTH, larger and more prominent */
     .about-stage-grid {
       display: flex !important;
       flex-direction: column !important;
-      gap: 1.5rem !important;
-      margin-bottom: 2.5rem !important;
+      gap: 1.75rem !important;
+      margin-bottom: 2.75rem !important;
     }
 
     .about-stage-inverted {
       display: flex !important;
       flex-direction: column-reverse !important;
-      gap: 1.5rem !important;
+      gap: 1.75rem !important;
       margin-bottom: 0 !important;
     }
 
     .about-photos-part1,
     .about-photos-part2 {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 0.85rem !important;
-      margin-top: 1rem !important;
-      margin-bottom: 1.5rem !important;
+      display: flex !important;
+      flex-direction: column !important;
+      width: 100% !important;
+      gap: 1.25rem !important;
+      margin-top: 1.25rem !important;
+      margin-bottom: 1.75rem !important;
     }
 
     .about-photos-part1 .about-photos-stack,
     .about-photos-part2 .about-photos-stack {
-      display: contents !important;
+      display: flex !important;
+      flex-direction: column !important;
+      width: 100% !important;
+      gap: 1.25rem !important;
     }
 
     .about-photos-part1 .card-beach-sunset,
@@ -2451,11 +2399,18 @@ const seoSchema = {
       display: none !important;
     }
 
+    .about-photos-col .about-photo-card {
+      width: 100% !important;
+      border-radius: 20px !important;
+      overflow: hidden !important;
+    }
+
     .about-photos-col .about-photo-card img {
-      height: 185px !important;
+      height: 340px !important;
       width: 100% !important;
       object-fit: cover !important;
-      border-radius: 16px !important;
+      border-radius: 20px !important;
+      display: block !important;
     }
 
     /* Future Buddha Image on Mobile: Small Margin Underneath */
@@ -2652,6 +2607,10 @@ const seoSchema = {
       filter: blur(14px);
     }
 
+    .tarot-card {
+      border-radius: 20px !important;
+    }
+
     .tarot-card-inner {
       display: flex !important;
       flex-direction: column !important;
@@ -2661,6 +2620,7 @@ const seoSchema = {
       gap: 0.75rem !important;
       padding: 1.35rem 1.25rem !important;
       border-radius: 20px !important;
+      background: transparent !important;
     }
 
     .tarot-icon-col {
