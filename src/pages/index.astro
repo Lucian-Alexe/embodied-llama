@@ -969,12 +969,36 @@ const seoSchema = {
 
       if (!viewport || !dots.length) return;
 
+      let lastActiveIdx = -1;
+
       function updateActiveIndex(idx: number) {
         dots.forEach((dot, i) => {
           const isActive = i === idx;
           dot.classList.toggle('is-active', isActive);
           dot.setAttribute('aria-selected', String(isActive));
         });
+
+        // Trigger smooth rotate ease on active slide icon
+        if (lastActiveIdx !== idx) {
+          lastActiveIdx = idx;
+          cards?.forEach((card, i) => {
+            const icon = card.querySelector('.pricing-icon');
+            if (icon) {
+              icon.classList.remove('is-rotating');
+              if (i === idx) {
+                // Force reflow so re-triggering works smoothly
+                void (icon as HTMLElement).offsetWidth;
+                icon.classList.add('is-rotating');
+              }
+            }
+          });
+        }
+      }
+
+      function scrollToCard(targetIdx: number) {
+        if (!cards || !cards[targetIdx]) return;
+        cards[targetIdx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        updateActiveIndex(targetIdx);
       }
 
       if ('onscrollsnapchange' in HTMLElement.prototype) {
@@ -1004,19 +1028,25 @@ const seoSchema = {
       dots.forEach((dot) => {
         dot.addEventListener('click', () => {
           const idx = parseInt(dot.getAttribute('data-index') || '0', 10);
-          if (cards && cards[idx]) {
-            cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-          }
+          scrollToCard(idx);
         });
       });
 
       prevBtn?.addEventListener('click', () => {
-        viewport.scrollBy({ left: -viewport.clientWidth * 0.9, behavior: 'smooth' });
+        const currentActive = Array.from(dots).findIndex((d) => d.classList.contains('is-active'));
+        const targetIdx = Math.max(0, (currentActive !== -1 ? currentActive : 0) - 1);
+        scrollToCard(targetIdx);
       });
 
       nextBtn?.addEventListener('click', () => {
-        viewport.scrollBy({ left: viewport.clientWidth * 0.9, behavior: 'smooth' });
+        const currentActive = Array.from(dots).findIndex((d) => d.classList.contains('is-active'));
+        const total = cards?.length || dots.length;
+        const targetIdx = Math.min(total - 1, (currentActive !== -1 ? currentActive : 0) + 1);
+        scrollToCard(targetIdx);
       });
+
+      // Initial active state
+      updateActiveIndex(0);
     }
 
     function initOfferingsDetails() {
@@ -1787,6 +1817,7 @@ const seoSchema = {
   /* CSS Scroll-Snap Slider Viewport */
   .pricing-slider-viewport {
     display: flex;
+    align-items: flex-start;
     gap: 2rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -1829,6 +1860,7 @@ const seoSchema = {
     grid-template-columns: 130px 1fr 200px;
     gap: 3.25rem;
     align-items: start;
+    align-self: flex-start;
     transition: border-color 0.25s ease;
   }
 
@@ -1852,6 +1884,35 @@ const seoSchema = {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transition: transform 0.4s ease;
+  }
+
+  .pricing-icon.is-rotating {
+    animation: iconRotateEase 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes iconRotateEase {
+    0% {
+      transform: rotate(-35deg) scale(0.92);
+      opacity: 0.85;
+    }
+    70% {
+      transform: rotate(4deg) scale(1.02);
+    }
+    85% {
+      transform: rotate(-1.5deg) scale(0.99);
+    }
+    100% {
+      transform: rotate(0deg) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pricing-icon.is-rotating {
+      animation: none !important;
+      transform: none !important;
+    }
   }
 
   .pricing-card-content-col {
@@ -2023,13 +2084,51 @@ const seoSchema = {
     justify-content: center;
   }
 
-  /* Part 3: Tarot Card with subtle magical animated gradient on loop */
+  /* Part 3: Tarot Card with subtle whimsical animated aura on loop */
   .tarot-card-wrapper {
+    position: relative;
     margin-top: 3.5rem;
+  }
+
+  .tarot-card-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -14px;
+    border-radius: 40px;
+    background: radial-gradient(
+      ellipse at 50% 50%,
+      rgba(214, 178, 94, 0.42) 0%,
+      rgba(238, 204, 142, 0.26) 40%,
+      rgba(255, 238, 209, 0.1) 65%,
+      transparent 80%
+    );
+    filter: blur(20px);
+    z-index: 0;
+    pointer-events: none;
+    animation: tarotAuraGlow 6s ease-in-out infinite;
+  }
+
+  @keyframes tarotAuraGlow {
+    0%, 100% {
+      opacity: 0.12;
+      transform: scale(0.97);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.03);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tarot-card-wrapper::before {
+      animation: none;
+      opacity: 0.4;
+    }
   }
 
   .tarot-card {
     position: relative;
+    z-index: 1;
     border-radius: 28px;
     border: 1px solid var(--border-subtle);
     box-shadow: none;
@@ -2316,30 +2415,44 @@ const seoSchema = {
       grid-template-columns: 1fr;
     }
 
-    /* About Me on Mobile: ONLY the first 2 photos visible */
-    .about-photos-part1 {
+    /* About Me on Mobile: 4 photos total (first 2 after narrative 1, other 2 after narrative 2) */
+    .about-stage-grid {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 1.5rem !important;
+      margin-bottom: 2.5rem !important;
+    }
+
+    .about-stage-inverted {
+      display: flex !important;
+      flex-direction: column-reverse !important;
+      gap: 1.5rem !important;
+      margin-bottom: 0 !important;
+    }
+
+    .about-photos-part1,
+    .about-photos-part2 {
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
       gap: 0.85rem !important;
-      margin-top: 1.5rem !important;
-      margin-bottom: 2rem !important;
+      margin-top: 1rem !important;
+      margin-bottom: 1.5rem !important;
     }
 
-    .about-photos-part1 .about-photos-stack {
+    .about-photos-part1 .about-photos-stack,
+    .about-photos-part2 .about-photos-stack {
       display: contents !important;
     }
 
     .about-photos-part1 .card-beach-sunset,
-    .about-photos-part1 .about-photos-side {
+    .about-photos-part1 .about-photos-side,
+    .about-photos-part2 .card-mandala-indoor,
+    .about-photos-part2 .about-photos-side {
       display: none !important;
     }
 
-    .about-photos-part2 {
-      display: none !important;
-    }
-
-    .about-photos-part1 .about-photo-card img {
-      height: 180px !important;
+    .about-photos-col .about-photo-card img {
+      height: 185px !important;
       width: 100% !important;
       object-fit: cover !important;
       border-radius: 16px !important;
@@ -2377,34 +2490,37 @@ const seoSchema = {
     }
 
     .pricing-slider-viewport {
+      display: flex !important;
+      align-items: flex-start !important;
       padding: 0.5rem 0.25rem 1.5rem;
       gap: 1.25rem;
     }
 
-    /* Mobile Pricing Card: Previewable on mobile screen without scrolling */
+    /* Mobile Pricing Card: Previewable on mobile screen without scrolling, pinned to top when expanded */
     .pricing-card {
-      display: grid !important;
-      grid-template-columns: 48px 1fr !important;
-      grid-template-areas:
-        "icon header"
-        "lead lead"
-        "action action"
-        "details details";
-      gap: 0.65rem 0.75rem !important;
-      padding: 1.2rem 1.15rem !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      justify-content: flex-start !important;
+      align-self: flex-start !important;
+      align-content: flex-start !important;
+      gap: 0.75rem !important;
+      padding: 1.35rem 1.25rem !important;
       border-radius: 20px !important;
     }
 
     .pricing-card-icon-col {
-      grid-area: icon;
-      padding-top: 0;
-      justify-content: flex-start;
-      align-items: center;
+      order: 1;
+      display: flex !important;
+      justify-content: flex-start !important;
+      align-items: center !important;
+      padding: 0 !important;
+      margin-bottom: 0.15rem !important;
     }
 
     .pricing-icon-wrap {
-      width: 48px !important;
-      height: 48px !important;
+      width: 44px !important;
+      height: 44px !important;
     }
 
     .pricing-card-content-col {
@@ -2412,11 +2528,10 @@ const seoSchema = {
     }
 
     .pricing-card-header-mobile-wrap {
-      grid-area: header;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 0.2rem;
+      order: 2;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.25rem !important;
     }
 
     .pricing-card-title {
@@ -2427,9 +2542,11 @@ const seoSchema = {
     }
 
     .pricing-tags-row {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 0.35rem !important;
       margin-top: 0.15rem !important;
       margin-bottom: 0 !important;
-      gap: 0.35rem !important;
     }
 
     .pricing-pill-badge {
@@ -2438,16 +2555,16 @@ const seoSchema = {
     }
 
     .pricing-card-lead {
-      grid-area: lead;
-      font-size: 0.92rem !important;
+      order: 3;
+      font-size: 0.88rem !important;
       line-height: 1.45 !important;
-      margin-bottom: 0 !important;
+      margin: 0 !important;
       color: var(--text-secondary);
       font-weight: 500 !important;
     }
 
     .pricing-card-action-col {
-      grid-area: action;
+      order: 4;
       display: flex !important;
       flex-direction: row !important;
       justify-content: space-between !important;
@@ -2487,8 +2604,9 @@ const seoSchema = {
     }
 
     .pricing-expand-details {
-      grid-area: details;
+      order: 5;
       width: 100%;
+      margin-top: 0.15rem !important;
     }
 
     .pricing-expand-toggle {
@@ -2496,33 +2614,67 @@ const seoSchema = {
       padding: 0.25rem 0;
     }
 
+    .pricing-expand-body {
+      padding-top: 0.5rem !important;
+      gap: 0.65rem !important;
+    }
+
+    .pricing-expand-body .pricing-card-note {
+      font-size: 0.82rem !important;
+      line-height: 1.45 !important;
+      margin-bottom: 0.35rem !important;
+    }
+
+    .pricing-expand-body .pricing-check-list {
+      gap: 0.65rem !important;
+    }
+
+    .pricing-expand-body .pricing-check-list li {
+      font-size: 0.82rem !important;
+      line-height: 1.45 !important;
+      gap: 0.55rem !important;
+    }
+
+    .pricing-expand-body .check-bullet svg {
+      width: 16px !important;
+      height: 16px !important;
+    }
+
     /* Tarot Mobile Card */
     .tarot-card-wrapper {
+      position: relative;
       margin-top: 2rem;
     }
 
+    .tarot-card-wrapper::before {
+      inset: -10px;
+      border-radius: 28px;
+      filter: blur(14px);
+    }
+
     .tarot-card-inner {
-      display: grid !important;
-      grid-template-columns: 40px 1fr !important;
-      grid-template-areas:
-        "icon header"
-        "desc desc"
-        "action action";
-      gap: 0.65rem 0.75rem !important;
-      padding: 1.2rem 1.15rem !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      justify-content: flex-start !important;
+      align-content: flex-start !important;
+      gap: 0.75rem !important;
+      padding: 1.35rem 1.25rem !important;
       border-radius: 20px !important;
     }
 
     .tarot-icon-col {
-      grid-area: icon;
-      padding-top: 0;
-      justify-content: flex-start;
-      align-items: center;
+      order: 1;
+      display: flex !important;
+      justify-content: flex-start !important;
+      align-items: center !important;
+      padding: 0 !important;
+      margin-bottom: 0.15rem !important;
     }
 
     .tarot-icon-wrap {
-      width: 38px !important;
-      height: 48px !important;
+      width: 36px !important;
+      height: 46px !important;
     }
 
     .tarot-content-col {
@@ -2530,11 +2682,10 @@ const seoSchema = {
     }
 
     .tarot-header-mobile-wrap {
-      grid-area: header;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 0.2rem;
+      order: 2;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.25rem !important;
     }
 
     .tarot-card-title {
@@ -2545,14 +2696,15 @@ const seoSchema = {
     }
 
     .tarot-card-desc {
-      grid-area: desc;
-      font-size: 0.92rem !important;
+      order: 3;
+      font-size: 0.88rem !important;
       line-height: 1.45 !important;
-      margin-bottom: 0 !important;
+      margin: 0 !important;
+      color: var(--text-secondary);
     }
 
     .tarot-action-col {
-      grid-area: action;
+      order: 4;
       display: flex !important;
       flex-direction: row !important;
       justify-content: space-between !important;

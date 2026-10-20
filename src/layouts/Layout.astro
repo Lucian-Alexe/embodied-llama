@@ -277,9 +277,30 @@ const { title, description, image, schema } = Astro.props;
 
   .mobile-brand-title {
     font-family: var(--font-heading);
-    font-size: 1.35rem;
+    font-size: 1.05rem;
     font-weight: 700;
     letter-spacing: -0.01em;
+    display: inline-block;
+    color: var(--brand-ochre);
+    animation: menuTitleSubtleGlow 9s ease-in-out infinite;
+    will-change: text-shadow, filter;
+  }
+
+  @keyframes menuTitleSubtleGlow {
+    0%, 72%, 100% {
+      text-shadow: 0 0 0px rgba(182, 142, 84, 0);
+      filter: drop-shadow(0 0 0px rgba(182, 142, 84, 0));
+    }
+    86% {
+      text-shadow: 0 0 8px rgba(182, 142, 84, 0.45), 0 0 16px rgba(182, 142, 84, 0.2);
+      filter: drop-shadow(0 0 4px rgba(182, 142, 84, 0.35));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-brand-title {
+      animation: none !important;
+    }
   }
 
   /* Desktop Nav Bar (Centered to match v3 mockup) */

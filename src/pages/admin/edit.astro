@@ -23,13 +23,13 @@ const isEditing = !!article;
     <title>{isEditing ? `Edit: ${article?.title}` : 'New Article'} | Embodied Llama</title>
     <style>
       :root {
-        --primary: #4f46e5;
-        --primary-hover: #4338ca;
-        --bg: #f8fafc;
-        --card: #ffffff;
-        --border: #e2e8f0;
-        --text: #0f172a;
-        --muted: #64748b;
+        --primary: #B68E54;
+        --primary-hover: #9E7943;
+        --bg: #FBF8F4;
+        --card: #FFFFFF;
+        --border: #EDE4D8;
+        --text: #2E3138;
+        --muted: #5E626B;
       }
       * { box-sizing: border-box; margin: 0; padding: 0; }
       body {
@@ -51,7 +51,7 @@ const isEditing = !!article;
         align-items: center;
         gap: 0.5rem;
         padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
+        border-radius: 9999px;
         font-size: 0.875rem;
         font-weight: 600;
         cursor: pointer;
@@ -66,18 +66,18 @@ const isEditing = !!article;
         border: 1px solid var(--border);
         color: var(--text);
       }
-      .btn-outline:hover { background: #f1f5f9; }
+      .btn-outline:hover { background: #EDE4D8; }
       
       main {
-        max-width: 1000px;
+        max-width: 1060px;
         margin: 2rem auto;
         padding: 0 1.5rem;
       }
       .card {
         background: var(--card);
         border: 1px solid var(--border);
-        border-radius: 0.75rem;
-        padding: 2rem;
+        border-radius: 1.25rem;
+        padding: 2.25rem;
       }
       .field { margin-bottom: 1.25rem; }
       .row {
@@ -93,9 +93,11 @@ const isEditing = !!article;
         width: 100%;
         padding: 0.75rem 1rem;
         border: 1px solid var(--border);
-        border-radius: 0.5rem;
+        border-radius: 0.75rem;
         font-size: 0.95rem;
         outline: none;
+        background: #fff;
+        color: var(--text);
       }
       textarea { font-family: inherit; }
       input:focus, textarea:focus, select:focus { border-color: var(--primary); }
@@ -103,25 +105,30 @@ const isEditing = !!article;
       .content-editor {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+        gap: 1.25rem;
         margin-top: 0.5rem;
       }
       @media (max-width: 850px) {
         .content-editor { grid-template-columns: 1fr; }
       }
       #editorContent {
-        min-height: 400px;
+        min-height: 440px;
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         font-size: 0.9rem;
         line-height: 1.6;
+        transition: border-color 0.2s;
+      }
+      #editorContent.is-dragover {
+        border-color: var(--primary);
+        background-color: #FAF6F0;
       }
       #previewBox {
         border: 1px solid var(--border);
-        border-radius: 0.5rem;
-        padding: 1rem;
-        background: #fdfdfd;
+        border-radius: 0.75rem;
+        padding: 1.25rem;
+        background: #FDFBF8;
         overflow-y: auto;
-        max-height: 400px;
+        max-height: 440px;
       }
       .form-actions {
         display: flex;
@@ -130,6 +137,12 @@ const isEditing = !!article;
         margin-top: 1.5rem;
         padding-top: 1.5rem;
         border-top: 1px solid var(--border);
+      }
+      .upload-status {
+        font-size: 0.8rem;
+        color: var(--primary);
+        font-weight: 500;
+        margin-left: 0.5rem;
       }
     </style>
   </head>
@@ -154,7 +167,7 @@ const isEditing = !!article;
           <div class="row">
             <div class="field">
               <label for="title">Article Title</label>
-              <input type="text" id="title" name="title" required value={article?.title || ''} placeholder="e.g. Introducing Embodied Llama" />
+              <input type="text" id="title" name="title" required value={article?.title || ''} placeholder="e.g. Somatic Grounding and Healing" />
             </div>
 
             <div class="field">
@@ -168,7 +181,7 @@ const isEditing = !!article;
 
           <div class="field">
             <label for="slug">URL Slug (SEO friendly)</label>
-            <input type="text" id="slug" name="slug" required value={article?.slug || ''} placeholder="introducing-embodied-llama" />
+            <input type="text" id="slug" name="slug" required value={article?.slug || ''} placeholder="somatic-grounding-and-healing" />
           </div>
 
           <div class="field">
@@ -177,13 +190,23 @@ const isEditing = !!article;
           </div>
 
           <div class="field">
-            <label>Content (Markdown / Text)</label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+              <label style="margin-bottom: 0;">Content (Markdown / Text)</label>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span id="uploadStatus" class="upload-status"></span>
+                <input type="file" id="photoFileInput" accept="image/png, image/jpeg, image/webp, image/gif" style="display: none;" />
+                <button type="button" id="uploadPhotoBtn" class="btn btn-outline" style="padding: 0.35rem 0.85rem; font-size: 0.82rem; gap: 0.35rem;">
+                  📷 Upload Photo
+                </button>
+              </div>
+            </div>
+
             <div class="content-editor">
               <div>
-                <textarea id="editorContent" name="content" placeholder="Write your article in Markdown here...">{article?.content || ''}</textarea>
+                <textarea id="editorContent" name="content" placeholder="Write your article in Markdown here... Tip: Click 'Upload Photo' or drag & drop images directly here.">{article?.content || ''}</textarea>
               </div>
               <div id="previewBox">
-                <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 700;">Live Preview</div>
+                <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 0.75rem; text-transform: uppercase; font-weight: 700;">Live Preview</div>
                 <div id="previewOutput"></div>
               </div>
             </div>
@@ -204,6 +227,9 @@ const isEditing = !!article;
       const preview = document.getElementById('previewOutput') as HTMLDivElement;
       const form = document.getElementById('articleForm') as HTMLFormElement;
       const saveBtn = document.getElementById('saveBtn') as HTMLButtonElement;
+      const uploadBtn = document.getElementById('uploadPhotoBtn') as HTMLButtonElement;
+      const photoInput = document.getElementById('photoFileInput') as HTMLInputElement;
+      const uploadStatus = document.getElementById('uploadStatus') as HTMLSpanElement;
 
       // Auto-generate slug from title if user hasn't typed a custom slug
       let userTouchedSlug = slugInput.value.length > 0;
@@ -219,7 +245,7 @@ const isEditing = !!article;
         }
       });
 
-      // Quick markdown preview renderer
+      // Quick markdown preview renderer with image support
       function updatePreview() {
         const raw = editor.value;
         if (!raw.trim()) {
@@ -227,21 +253,125 @@ const isEditing = !!article;
           return;
         }
 
-        // Basic markdown transforms for headers, bold, italics, paragraphs
+        // Basic markdown transforms for headers, bold, italics, images, paragraphs
         let html = raw
-          .replace(/^### (.*$)/gim, '<h3 style="margin: 0.75rem 0 0.5rem 0; font-size: 1.15rem;">$1</h3>')
-          .replace(/^## (.*$)/gim, '<h2 style="margin: 1rem 0 0.5rem 0; font-size: 1.35rem;">$1</h2>')
-          .replace(/^# (.*$)/gim, '<h1 style="margin: 1.25rem 0 0.75rem 0; font-size: 1.6rem;">$1</h1>')
+          .replace(/^### (.*$)/gim, '<h3 style="margin: 0.75rem 0 0.5rem 0; font-size: 1.15rem; color: #2E3138;">$1</h3>')
+          .replace(/^## (.*$)/gim, '<h2 style="margin: 1rem 0 0.5rem 0; font-size: 1.35rem; color: #2E3138;">$1</h2>')
+          .replace(/^# (.*$)/gim, '<h1 style="margin: 1.25rem 0 0.75rem 0; font-size: 1.6rem; color: #2E3138;">$1</h1>')
+          .replace(/!\[(.*?)\]\((.*?)\)/gim, '<div style="margin: 1.25rem 0; text-align: center;"><img src="$2" alt="$1" style="max-width: 100%; border-radius: 12px; border: 1px solid #EDE4D8; display: block; margin: 0 auto;" /><div style="font-size: 0.8rem; color: #5E626B; margin-top: 0.35rem; font-style: italic;">$1</div></div>')
           .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
           .replace(/\*(.*?)\*/gim, '<em>$1</em>')
-          .replace(/\n\n/gim, '</p><p style="margin-bottom: 0.75rem;">')
+          .replace(/\n\n/gim, '</p><p style="margin-bottom: 0.85rem; line-height: 1.7;">')
           .replace(/\n/gim, '<br/>');
 
-        preview.innerHTML = `<p style="margin-bottom: 0.75rem;">${html}</p>`;
+        preview.innerHTML = `<p style="margin-bottom: 0.85rem; line-height: 1.7;">${html}</p>`;
       }
 
       editor.addEventListener('input', updatePreview);
       updatePreview();
+
+      // Optimize and compress uploaded photo via HTML5 Canvas
+      async function processImageFile(file: File): Promise<string> {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+              const maxDim = 1200;
+              let width = img.width;
+              let height = img.height;
+
+              if (width > maxDim || height > maxDim) {
+                if (width > height) {
+                  height = Math.round((height * maxDim) / width);
+                  width = maxDim;
+                } else {
+                  width = Math.round((width * maxDim) / height);
+                  height = maxDim;
+                }
+              }
+
+              const canvas = document.createElement('canvas');
+              canvas.width = width;
+              canvas.height = height;
+              const ctx = canvas.getContext('2d');
+              if (!ctx) {
+                resolve(e.target?.result as string);
+                return;
+              }
+
+              ctx.drawImage(img, 0, 0, width, height);
+              // Export as compressed WebP or JPEG
+              const mime = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+              const dataUrl = canvas.toDataURL(mime, 0.84);
+              resolve(dataUrl);
+            };
+            img.onerror = reject;
+            img.src = e.target?.result as string;
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      // Insert image markdown into textarea at cursor
+      async function handleImageUpload(file: File) {
+        if (!file.type.startsWith('image/')) {
+          alert('Please select an image file (PNG, JPG, WebP).');
+          return;
+        }
+
+        uploadStatus.innerText = 'Compressing photo...';
+        try {
+          const dataUrl = await processImageFile(file);
+          const caption = prompt('Enter a caption/description for this photo (optional):', file.name.replace(/\.[^/.]+$/, '')) || 'Photo';
+          
+          const markdownImage = `\n\n![${caption}](${dataUrl})\n\n`;
+          
+          // Insert at cursor
+          const start = editor.selectionStart;
+          const end = editor.selectionEnd;
+          const text = editor.value;
+          editor.value = text.substring(0, start) + markdownImage + text.substring(end);
+          editor.selectionStart = editor.selectionEnd = start + markdownImage.length;
+          
+          uploadStatus.innerText = 'Photo inserted!';
+          setTimeout(() => { uploadStatus.innerText = ''; }, 2500);
+          updatePreview();
+        } catch (err) {
+          uploadStatus.innerText = '';
+          alert('Failed to process image.');
+        }
+      }
+
+      uploadBtn.addEventListener('click', () => {
+        photoInput.click();
+      });
+
+      photoInput.addEventListener('change', () => {
+        if (photoInput.files && photoInput.files[0]) {
+          handleImageUpload(photoInput.files[0]);
+          photoInput.value = '';
+        }
+      });
+
+      // Drag and drop onto editor textarea
+      editor.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        editor.classList.add('is-dragover');
+      });
+
+      editor.addEventListener('dragleave', () => {
+        editor.classList.remove('is-dragover');
+      });
+
+      editor.addEventListener('drop', (e) => {
+        e.preventDefault();
+        editor.classList.remove('is-dragover');
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
+          handleImageUpload(e.dataTransfer.files[0]);
+        }
+      });
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -281,4 +411,3 @@ const isEditing = !!article;
     </script>
   </body>
 </html>
-
